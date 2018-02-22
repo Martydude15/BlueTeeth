@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="southWhite">#ffffff</color>
+    <color name="southBlue">#192857</color>
+    <color name="southRed">#c61f3f</color>
 </resources>
