@@ -48,6 +48,7 @@
         android:elevation="0dp"
         android:fontFamily="sans-serif"
         android:linksClickable="false"
+        android:onClick="testMethod"
         android:text="Submit"
         android:textSize="24sp"
         android:visibility="visible" />
