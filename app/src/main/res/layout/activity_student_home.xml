@@ -6,4 +6,12 @@
     android:background="@color/southBlue"
     tools:context="com.example.marta.blueteeth.StudentHomeActivity">
 
+    <Button
+        android:id="@+id/connect_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/connect_button"
+        android:text="Connect" />
 </RelativeLayout>
