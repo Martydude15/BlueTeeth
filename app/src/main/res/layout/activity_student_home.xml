@@ -3,15 +3,55 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/southBlue"
+    android:background="@color/southWhite"
+    android:visibility="visible"
     tools:context="com.example.marta.blueteeth.StudentHomeActivity">
 
-    <Button
-        android:id="@+id/connect_button"
-        android:layout_width="100dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="300dp"
         android:layout_height="100dp"
+        android:layout_below="@+id/textView2"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:background="@drawable/connect_button"
-        android:text="Connect" />
+        android:src="@drawable/student_home_rectangle_5"
+        android:visibility="gone" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="175dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/login_button"
+        android:elevation="0dp"
+        android:fontFamily="sans-serif"
+        android:linksClickable="false"
+        android:onClick="testMethod"
+        android:text="Connect"
+        android:textSize="24sp"
+        android:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/header"
+        android:layout_width="300dp"
+        android:layout_height="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="61dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/student_home_heading"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/header"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button"
+        android:text="CSC 331"
+        android:visibility="visible" />
+
 </RelativeLayout>
