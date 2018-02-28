@@ -9,10 +9,8 @@
 
     <Button
         android:id="@+id/angry_btn"
-
         android:layout_width="100dp"
         android:layout_height="60dp"
-
         android:layout_below="@+id/progressBar"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
