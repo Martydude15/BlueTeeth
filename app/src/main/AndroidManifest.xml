@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".StudentHomeActivity" />
         <activity android:name=".TeacherPasswordActivity" />
-        <activity android:name=".TeacherHomeActivity"></activity>
+        <activity android:name=".TeacherHomeActivity" />
+        <activity android:name=".StudentConnectScreen"></activity>
     </application>
 
 </manifest>
