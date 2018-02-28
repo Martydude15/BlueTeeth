@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="157dp"
+        android:layout_marginTop="100dp"
         android:backgroundTint="@color/southBlue"
         android:indeterminate="false"
         tools:visibility="visible" />
