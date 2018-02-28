@@ -7,21 +7,24 @@
     android:visibility="visible"
     tools:context="com.example.marta.blueteeth.StudentHomeActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <EditText
         android:layout_width="300dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/textView2"
+        android:layout_height="35dp"
+        android:id="@+id/textBox"
+        android:background="@drawable/student_connect_text"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/student_home_rectangle_5"
-        android:visibility="gone" />
+        android:layout_marginTop="30dp"
+        android:cursorVisible="true"
+        android:hint="Class Name"
+        android:paddingLeft="5dp">
+    </EditText>
 
 
     <Button
         android:id="@+id/button"
         android:layout_width="175dp"
         android:layout_height="50dp"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textBox"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:background="@drawable/login_button"
@@ -32,26 +35,4 @@
         android:text="Connect"
         android:textSize="24sp"
         android:visibility="visible" />
-
-    <ImageView
-        android:id="@+id/header"
-        android:layout_width="300dp"
-        android:layout_height="25dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="61dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/student_home_heading"
-        android:visibility="visible" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/header"
-        android:layout_toLeftOf="@+id/button"
-        android:layout_toStartOf="@+id/button"
-        android:text="CSC 331"
-        android:visibility="visible" />
-
 </RelativeLayout>
