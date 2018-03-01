@@ -37,17 +37,15 @@
         android:id="@+id/button"
         android:layout_width="175dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/editText"
+        android:layout_below="@id/editText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="25dp"
         android:background="@drawable/login_button"
-        android:elevation="0dp"
         android:fontFamily="sans-serif"
         android:linksClickable="false"
         android:onClick="testMethod"
         android:text="Submit"
         android:textSize="24sp"
         android:visibility="visible" />
-
 
 </RelativeLayout>
