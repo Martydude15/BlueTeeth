@@ -19,7 +19,7 @@
         <activity android:name=".StudentHomeActivity" />
         <activity android:name=".TeacherPasswordActivity" />
         <activity android:name=".TeacherHomeActivity" />
-        <activity android:name=".StudentConnectScreen"></activity>
+        <activity android:name=".StudentConnectScreen" />
     </application>
 
 </manifest>
