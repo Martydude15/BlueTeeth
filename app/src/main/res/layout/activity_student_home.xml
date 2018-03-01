@@ -16,7 +16,7 @@
         android:layout_marginTop="150dp"
         android:cursorVisible="true"
         android:hint="Class Name"
-        android:paddingLeft="5dp">
+        android:paddingLeft="10dp">
     </EditText>
 
 

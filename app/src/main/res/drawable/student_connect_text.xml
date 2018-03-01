@@ -3,11 +3,13 @@
     <item android:state_focused="false">
         <shape android:shape="rectangle">
             <solid android:color="@color/textGray" />
+            <corners android:radius="30dp"/>
         </shape>
     </item>
     <item android:state_focused="false">
         <shape android:shape="rectangle">
             <solid android:color="@color/textFocusedGray" />
+            <corners android:radius="30dp"/>
         </shape>
     </item>
 
