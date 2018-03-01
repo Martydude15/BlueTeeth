@@ -45,6 +45,7 @@
         android:linksClickable="false"
         android:onClick="testMethod"
         android:text="Submit"
+        android:textColor="@color/southWhite"
         android:textSize="24sp"
         android:visibility="visible" />
 
