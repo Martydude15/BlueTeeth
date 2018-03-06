@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.marta.blueteeth">
 
+    <uses-permission-sdk-23 android:name="android.permission.CAMERA" />
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,6 +23,8 @@
         <activity android:name=".TeacherPasswordActivity" />
         <activity android:name=".TeacherHomeActivity" />
         <activity android:name=".StudentConnectScreen" />
+        <activity android:name=".Student_Activity_Step1" />
+        <activity android:name=".Student_Step_2"></activity>
     </application>
 
 </manifest>

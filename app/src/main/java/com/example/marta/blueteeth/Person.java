@@ -11,7 +11,7 @@ class Person {
     }
 
     Person() {
-        jagNumber = "";
+        jagNumber = "55";
         aTeacher = false;
     }
 

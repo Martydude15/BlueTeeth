@@ -15,9 +15,11 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="120dp"
         android:background="@drawable/next_button"
+        android:onClick="testMethod"
         android:text="Next"
         android:textColor="#FFFFFF"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="visible" />
 
     <ProgressBar
         android:id="@+id/progressBar"
