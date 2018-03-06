@@ -5,14 +5,7 @@
             android:innerRadius="1dp"
             android:shape="rectangle">
             <corners android:radius="3dp" />
-            <gradient
-                android:angle="45"
-                android:centerColor="@color/southRed"
-                android:centerX="50%"
-                android:endColor="#960B35"
-                android:startColor="#960B35"
-                android:type="linear"
-                android:useLevel="true" />
+            <solid android:color="@color/southRed"/>
             <size
                 android:width="270dp"
                 android:height="60dp" />

@@ -8,4 +8,5 @@
     <color name="southRed">#c61f3f</color>
     <color name="textGray">#696969</color>
     <color name="textFocusedGray">#939393</color>
+    <color name="textLightGray">#dddddd</color>
 </resources>
