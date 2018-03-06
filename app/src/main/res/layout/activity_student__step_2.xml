@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/southBlue"
+    android:visibility="visible"
     tools:context="com.example.marta.blueteeth.Student_Step_2">
 
-</android.support.constraint.ConstraintLayout>
+    <RadioGroup
+        android:id="@+id/Button_Group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignParentTop="false"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="250dp"
+        android:clickable="true"
+        android:visibility="visible">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/southWhite"
+            android:onClick="onRadioButtonClicked"
+            android:text="A"
+            android:textColor="@color/southWhite"
+            android:textColorHighlight="@color/southWhite" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/southWhite"
+            android:onClick="onRadioButtonClicked"
+            android:text="B"
+            android:textColor="@color/southWhite" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/southWhite"
+            android:onClick="onRadioButtonClicked"
+            android:text="C"
+            android:textColor="@color/southWhite" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/subTitle"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/subTitle"
+        android:layout_marginTop="90dp"
+        android:text="Step 2"
+        android:textColor="@color/southWhite"
+        android:textSize="36sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/subTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Button_Group"
+        android:layout_alignStart="@+id/Button_Group"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="57dp"
+        android:text="Look on the board and pick an answer choice."
+        android:textColor="@color/southWhite"
+        android:visibility="visible" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Button_Group"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/Button_Group"
+        android:layout_marginBottom="85dp"
+        android:layout_marginLeft="85dp"
+        android:layout_marginStart="85dp"
+        android:text="Button" />
+
+</RelativeLayout>

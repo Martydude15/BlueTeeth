@@ -72,9 +72,12 @@ public class Student_Activity_Step1 extends AppCompatActivity {
         }
     }
     */
-        public void testMethod(View view) {
-            Intent switchPage = new Intent(Student_Activity_Step1.this, Student_Activity_Step2.class);
-            startActivity(switchPage);
-        }
+
     }
+
+    public void testMethod(View view) {
+        Intent switchPage = new Intent(Student_Activity_Step1.this, Student_Step_2.class);
+        startActivity(switchPage);
+    }
+
 }
