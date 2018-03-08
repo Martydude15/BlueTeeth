@@ -1,5 +1,6 @@
 package com.example.marta.blueteeth;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -32,6 +33,11 @@ public class Student_Step_2 extends AppCompatActivity {
                     // Pirates are the best
                     break;
         }
+    }
+
+    public void testMethod(View view) {
+        Intent switchPage = new Intent(Student_Step_2.this, Student_Confirmation.class);
+        startActivity(switchPage);
     }
 
 }
