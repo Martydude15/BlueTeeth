@@ -8,6 +8,8 @@
     tools:context="com.example.marta.blueteeth.MainActivity"
     tools:showIn="@layout/activity_app_bar_main">
 
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
