@@ -1,4 +1,4 @@
-package com.example.marta.blueteeth.person;
+package com.example.marta.domain;
 
 /**
  * Created by Blake on 3/9/2018.
