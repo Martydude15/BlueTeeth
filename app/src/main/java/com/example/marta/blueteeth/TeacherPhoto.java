@@ -23,7 +23,7 @@ public class TeacherPhoto extends AppCompatActivity {
     }
 
         public void testMethod(View view) {
-            Intent switchPage = new Intent(TeacherPhoto.this, TeacherHomeScreenActivity.class);
+            Intent switchPage = new Intent(TeacherPhoto.this, MainActivity.class);
             startActivity(switchPage);
         }
 
