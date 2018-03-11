@@ -34,7 +34,7 @@
         android:visibility="visible" />
 
     <Button
-        android:id="@+id/angry_btn2"
+        android:id="@+id/next_btn"
         android:layout_width="110dp"
         android:layout_height="40dp"
         android:layout_below="@id/textView4"

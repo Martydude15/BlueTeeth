@@ -27,6 +27,8 @@
         <activity android:name=".Student_Step_2" />
         <activity android:name=".Student_Confirmation"></activity>
         <activity android:name=".TeacherConnectScreen" />
+        <activity android:name=".TeacherPhoto" />
+        <activity android:name=".TeacherHomeScreenActivity" />
     </application>
 
 </manifest>
