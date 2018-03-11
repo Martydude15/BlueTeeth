@@ -3,8 +3,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/southBlue"
+    android:background="@drawable/home_screen_background"
     tools:context="com.example.marta.blueteeth.TeacherHomeActivity">
 
+    <TextView
+        android:id="@+id/textBox2"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_below="@+id/blueBar"
+        android:text="CSC 331"
+        android:textColor="@color/southWhite"
+        android:textSize="25dp"
+        android:visibility="visible"
+        />
 
-</RelativeLayout>
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="275dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="60dp"
+        android:text="Set Date Here"
+        android:textColor="@color/southBlue"
+        android:textSize="40dp"
+        android:visibility="visible"
+        />
+
+    <ImageButton
+        android:id="@+id/bluetoothButton"
+        android:layout_width="200dp"
+        android:layout_height="70dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bluetooth_button_with_text2"
+        android:contentDescription="TODO"
+        android:linksClickable="false"
+        android:onClick="testMethod"
+        android:visibility="visible" />
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/bluetoothButton"
+        android:layout_toRightOf="@+id/bluetoothButton"
+        android:layout_marginTop="187dp"
+        android:layout_marginLeft="25dp"
+        android:background="@drawable/floating_action_button_with_symbol3"
+        android:linksClickable="false"
+        android:onClick="testMethod"
+        android:visibility="visible"
+        android:contentDescription="TODO" />
+
+    <ImageView
+       android:id="@+id/blueBar"
+        android:layout_width="500dp"
+        android:layout_height="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/blue_bar_without_branding"
+        android:linksClickable="false"
+        android:contentDescription="TODO" />
+
+
+    <ImageView
+        android:layout_width="500dp"
+        android:layout_height="35dp"
+        android:layout_below="@+id/blueBar"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/red_bar_without_branding"
+        android:visibility="visible"
+        android:contentDescription="TODO" />
+    </RelativeLayout>
