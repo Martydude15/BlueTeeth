@@ -1,7 +1,10 @@
 package com.example.marta.blueteeth;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.AppCompatImageButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -32,6 +36,15 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
+        //THIS IS TO TRY TO GET THE BLUETOOTH BUTTON TO WORK
+        //AppCompatImageButton compatImageButton = (AppCompatImageButton) findViewById(R.id.btbutton);
+        //compatImageButton.setOnClickListener(new View.OnClickListener() {
+        //    @Override
+        //    public void onClick(View v) {
+        //        Snackbar.make(v,"Action coming soon", Snackbar.LENGTH_LONG)
+        //                .setAction("Action", null).show();
+        //});
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -40,6 +53,14 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Makes Home fragment the default
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.flMain,new HomeFragment());
+        ft.commit();
+
+        navigationView.setCheckedItem(R.id.nav_home);
     }
 
     @Override
@@ -80,23 +101,39 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_home) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain,new HomeFragment());
+            ft.commit();
+        } else if (id == R.id.nav_attendees) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain,new AttedeeFragment());
+            ft.commit();
+        } else if (id == R.id.nav_nonAttendees) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain,new NonAttendeeFragment());
+            ft.commit();
+        } else if (id == R.id.nav_list) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain,new ListFragment());
+            ft.commit();
+        } else if (id == R.id.nav_studentAdd) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain,new StudentAddFragment());
+            ft.commit();
+        } else if (id == R.id.nav_location) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.flMain,new LocationFragment());
+            ft.commit();
+        } else if (id == R.id.nav_settings) {
+            Intent i = new Intent(MainActivity.this,SettingsActivity.class);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
 
 }

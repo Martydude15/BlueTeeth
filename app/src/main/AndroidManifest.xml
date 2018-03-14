@@ -25,11 +25,17 @@
         <activity android:name=".StudentConnectScreen" />
         <activity android:name=".Student_Activity_Step1" />
         <activity android:name=".Student_Step_2" />
-        <activity android:name=".Student_Confirmation"></activity>
+        <activity android:name=".Student_Confirmation" />
         <activity android:name=".TeacherConnectScreen" />
         <activity android:name=".TeacherPhoto" />
         <activity android:name=".TeacherHomeScreenActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".SettingsActivity" />
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value=".MainActivity" />
+
     </application>
 
 </manifest>
