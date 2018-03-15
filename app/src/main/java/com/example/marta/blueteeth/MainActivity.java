@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
@@ -27,23 +30,51 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        FloatingActionButton mShowDialog = (FloatingActionButton) findViewById(R.id.fab);
+        mShowDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+                View mView = getLayoutInflater().inflate(R.layout.dialog_text_question, null);
+                final EditText mQuestion = (EditText) mView.findViewById(R.id.editQuestion);
+                final EditText mAnswer = (EditText) mView.findViewById(R.id.editAnswer);
+                Button mSend = (Button) mView.findViewById(R.id.sendbtn);
+                Button mCancel = (Button) mView.findViewById(R.id.cancelbtn);
+
+                mSend.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(!mQuestion.getText().toString().isEmpty() && !mAnswer.getText().toString().isEmpty()){
+                            Toast.makeText(MainActivity.this, "Question has been sent.", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(MainActivity.this, "Input a question or answer.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                mCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "Tap outside of the dialog box.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                mBuilder.setView(mView);
+                AlertDialog dialog = mBuilder.create();
+                dialog.show();
             }
         });
 
-        //THIS IS TO TRY TO GET THE BLUETOOTH BUTTON TO WORK
-        //AppCompatImageButton compatImageButton = (AppCompatImageButton) findViewById(R.id.btbutton);
-        //compatImageButton.setOnClickListener(new View.OnClickListener() {
-        //    @Override
-        //    public void onClick(View v) {
-        //        Snackbar.make(v,"Action coming soon", Snackbar.LENGTH_LONG)
-        //                .setAction("Action", null).show();
-        //});
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
