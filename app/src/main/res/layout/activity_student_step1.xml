@@ -41,7 +41,7 @@
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         android:visibility="visible"
-        android:onClick="Take Picture"
+        android:onClick="cameraClick"
         />
 
     <TextView

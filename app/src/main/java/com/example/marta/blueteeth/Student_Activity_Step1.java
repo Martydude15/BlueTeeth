@@ -25,26 +25,10 @@ public class Student_Activity_Step1 extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_student_step1);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_student_step1);
 
-            Button btncamera = (Button)findViewById(R.id.btnCamera);
-            ImageView imageView = (ImageView)findViewById(R.id.imageView);
+        Button btncamera = (Button) findViewById(R.id.btnCamera);
 
-            btncamera.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-                    startActivityForResult(intent,0);
-                }
-            });
-        }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
-        imageView.setImageBitmap(bitmap);
     }
-    }
-
+}
