@@ -12,23 +12,20 @@
     "firstName":"Dontarrio",
     "middleName":"",
     "lastName":"Weather",
-    "jagNumber":"J00456789",
-    "passCode":""
+    "jagNumber":"J00456789"
   },
   {
     "class":"Student",
     "firstName":"Blake",
     "middleName":"",
     "lastName":"Johnas",
-    "jagNumber":"J00123456",
-    "passCode":""
+    "jagNumber":"J00123456"
   },
   {
     "class":"Student",
     "firstName":"Martavious",
     "middleName":"",
     "lastName":"Johnson",
-    "jagNumber":"J00654321",
-    "passCode":""
+    "jagNumber":"J00654321"
   }
 ]
