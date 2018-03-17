@@ -16,6 +16,8 @@ public class JSONDriver {
 
     /**
      *
+     * Constructor:
+     *
      * @param pathToJson
      *      take the path to the json file that contains the information of the class
      * @throws IOException
@@ -63,8 +65,8 @@ public class JSONDriver {
     private void readPerson(JsonReader json) throws IOException {
         // Looks at everything encapsulated by {}
         json.beginObject();
-        json.nextName();
-        String type = json.nextString();
+        // Skips the next key, but pulls in value
+        json.nextName(); String type = json.nextString();
         if (type.equals("Teacher")) {
             readTeacher(json);
         }
@@ -74,29 +76,34 @@ public class JSONDriver {
         json.endObject();
     }
 
+    /**
+     *
+     * @param json
+     *      receives the open Json file to be read
+     * @throws IOException
+     *      handled in HomeScreen.java
+     */
     private void readStudent(JsonReader json) throws IOException {
-        json.nextName();
-        String fname = json.nextString();
-        json.nextName();
-        String mname = json.nextString();
-        json.nextName();
-        String lname = json.nextString();
-        json.nextName();
-        String jagnumber = json.nextString();
+        json.nextName(); String fname = json.nextString();
+        json.nextName(); String mname = json.nextString();
+        json.nextName(); String lname = json.nextString();
+        json.nextName(); String jagnumber = json.nextString();
         students.add(new Student(fname, mname, lname, jagnumber));
     }
 
+    /**
+     *
+     * @param json
+     *      receives the open Json file to be read
+     * @throws IOException
+     *      handled in HomeScreen.java
+     */
     private void readTeacher(JsonReader json) throws IOException{
-        json.nextName();
-        String fname = json.nextString();
-        json.nextName();
-        String mname = json.nextString();
-        json.nextName();
-        String lname = json.nextString();
-        json.nextName();
-        String jagnumber = json.nextString();
-        json.nextName();
-        String password = json.nextString();
+        json.nextName(); String fname = json.nextString();
+        json.nextName(); String mname = json.nextString();
+        json.nextName(); String lname = json.nextString();
+        json.nextName(); String jagnumber = json.nextString();
+        json.nextName(); String password = json.nextString();
         teachers.add(new Teacher(fname,mname, lname, jagnumber, password));
     }
 

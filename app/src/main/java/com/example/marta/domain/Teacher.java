@@ -14,19 +14,22 @@ public class Teacher extends Person implements Parcelable{
 
     Teacher(String firstName, String middleName, String lastName, String jagNumber, String passCode) {
         super(firstName, middleName, lastName, jagNumber);
-        setPassCode(passCode);
+        this.passCode = passCode;
     }
 
-    Teacher (Parcel parcel) {
+    /**
+     *
+     * @param parcel
+     *      This is to help with passing around between activities
+     */
+    private Teacher(Parcel parcel) {
         super(parcel);
         this.passCode = parcel.readString();
     }
 
-    Teacher() {
-        super();
-        this.passCode = "";
-    }
-
+    /**
+     * This just takes and creates a new object when passed between the activities.
+     */
     public static final Creator<Teacher> CREATOR = new Creator<Teacher>() {
         @Override
         public Teacher createFromParcel(Parcel in) {
@@ -39,12 +42,17 @@ public class Teacher extends Person implements Parcelable{
         }
     };
 
+    /**
+     *
+     * @return
+     *      the password.
+     */
     public String getPassCode() {
         /**
          * @TODO: Need to add code here to take care of empty string. Should not allow.
          */
         if (passCode.equals("")) {
-            System.out.println("Password is empty");
+            throw new IllegalArgumentException();
         }
         return passCode;
     }
@@ -52,11 +60,23 @@ public class Teacher extends Person implements Parcelable{
        this.passCode = passCode;
     }
 
+    /**
+     *
+     * @return
+     *      The hashcode for checking when unpacking.
+     */
     @Override
     public int describeContents() {
         return hashCode();
     }
 
+    /**
+     *
+     * @param dest
+     *      target view to send object to.
+     * @param flags
+     *      for flags, if flags needed to be set.
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         super.writeToParcel(dest, flags);
