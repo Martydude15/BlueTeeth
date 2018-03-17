@@ -77,6 +77,7 @@ public class HomeScreen extends AppCompatActivity {
                  Intent intent = new
                          Intent(HomeScreen.this, StudentHomeActivity.class);
                  intent.putExtra("user", student);
+                 return intent;
              }
         }
         return null;

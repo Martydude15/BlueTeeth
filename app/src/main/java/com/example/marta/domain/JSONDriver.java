@@ -6,7 +6,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class JSONDriver {
 
@@ -65,13 +64,15 @@ public class JSONDriver {
     private void readPerson(JsonReader json) throws IOException {
         // Looks at everything encapsulated by {}
         json.beginObject();
-        // Skips the next key, but pulls in value
-        json.nextName(); String type = json.nextString();
-        if (type.equals("Teacher")) {
-            readTeacher(json);
-        }
-        else {
-            readStudent(json);
+        while (json.hasNext()) {
+            // Skips the next key, but pulls in value
+            json.nextName(); String type = json.nextString();
+            if (type.equals("Teacher")) {
+                readTeacher(json);
+            }
+            else {
+                readStudent(json);
+            }
         }
         json.endObject();
     }
