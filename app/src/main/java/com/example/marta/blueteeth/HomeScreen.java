@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-
+import com.example.marta.domain.*;
 import java.io.IOException;
-import java.util.List;
 
 public class HomeScreen extends AppCompatActivity {
 
@@ -20,38 +19,41 @@ public class HomeScreen extends AppCompatActivity {
     }
 
 
-    public void testMethod(View view) throws IOException {
-        EditText textBox = findViewById(R.id.editText);
+    public void login(View view) throws IOException {
         try {
-            Person loginPerson = verifyLogin(textBox.getText().toString());
-            if (loginPerson.isTeacher()) {
-                Intent switchPage = new Intent(HomeScreen.this, TeacherHomeActivity.class);
-                startActivity(switchPage);
-            } else if (!loginPerson.getJagNumber().equals("")) {
-                Intent switchPage = new Intent(HomeScreen.this, StudentHomeActivity.class);
-                startActivity(switchPage);
-            } else {
+            EditText textBox = findViewById(R.id.editText);
+            Intent intent = verifyLogin(textBox.getText().toString());
+            if (intent != null) startActivity(intent);
+            else {
                 textBox.getText().clear();
-                loginError();
+                AlertDialog dialog = loginError();
+                dialog.show();
             }
         }
-        catch (Exception e) {
-            e.printStackTrace();
+        catch (IOException ioe) {
+            AlertDialog dialog = loginError();
+            dialog.setMessage("File not found.");
+            dialog.show();
         }
     }
 
-    public Person verifyLogin(String jagNumber) throws IOException{
+    public Intent verifyLogin(String jagNumber) throws IOException {
         JSONDriver json = new JSONDriver(getAssets().open("login.json"));
-        List<Person> people = json.getPeople(json.getJson());
-        for (Person person: people) {
-            if (person.getJagNumber().equals(jagNumber)) {
-                return person;
+        json.getPeople(json.getJson());
+        for (Teacher teacher : json.getTeachers()) {
+            if (teacher.getJagNumber().equals(jagNumber)) {
+                return new Intent(HomeScreen.this, TeacherHomeActivity.class);
             }
         }
-        return new Person();
+        for (Student student : json.getStudents()) {
+             if (student.getJagNumber().equals(jagNumber)) {
+                 return new Intent(HomeScreen.this, StudentHomeActivity.class);
+             }
+        }
+        return null;
     }
 
-    public void loginError() {
+    public AlertDialog loginError() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Jag Number does not exist.");
         AlertDialog dialog = builder.create();
@@ -61,7 +63,7 @@ public class HomeScreen extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-        dialog.show();
+        return dialog;
     }
 
 }

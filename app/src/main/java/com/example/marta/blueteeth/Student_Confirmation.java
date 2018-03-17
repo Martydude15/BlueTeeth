@@ -17,5 +17,4 @@ public class Student_Confirmation extends AppCompatActivity {
         Intent switchPage = new Intent(Student_Confirmation.this, StudentHomeActivity.class);
         startActivity(switchPage);
     }
-
 }

@@ -39,5 +39,4 @@ public class Student_Step_2 extends AppCompatActivity {
         Intent switchPage = new Intent(Student_Step_2.this, Student_Confirmation.class);
         startActivity(switchPage);
     }
-
 }

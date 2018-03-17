@@ -12,6 +12,12 @@ public class Teacher extends Person {
         super(firstName, middleName, lastName, jagNumber);
 
         this.passCode = passCode;
+        /**
+         * @TODO: Need to add code here to take care of empty string. Should not allow.
+         */
+//        if (passCode.equals("")) {
+//            throw new IllegalArgumentException();
+//        }
     }
 
     public String getPassCode() {

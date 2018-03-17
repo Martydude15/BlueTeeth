@@ -17,5 +17,4 @@ public class StudentHomeActivity extends AppCompatActivity {
         Intent switchPage = new Intent(StudentHomeActivity.this, StudentConnectScreen.class);
         startActivity(switchPage);
     }
-
 }

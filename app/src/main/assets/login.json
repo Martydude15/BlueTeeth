@@ -1,18 +1,34 @@
 [
   {
-    "JagNumber":"J00987654",
-    "Teacher":1
+    "class":"Teacher",
+    "firstName":"Ryan",
+    "middleName":"",
+    "lastName":"Benton",
+    "jagNumber":"J00987654",
+    "passCode":"South2018"
   },
   {
-    "JagNumber":"J00456789",
-    "Teacher":0
+    "class":"Student",
+    "firstName":"Dontarrio",
+    "middleName":"",
+    "lastName":"Weather",
+    "jagNumber":"J00456789",
+    "passCode":""
   },
   {
-    "JagNumber":"J00123456",
-    "Teacher":0
+    "class":"Student",
+    "firstName":"Blake",
+    "middleName":"",
+    "lastName":"Johnas",
+    "jagNumber":"J00123456",
+    "passCode":""
   },
   {
-    "JagNumber":"J00654321",
-    "Teacher":0
+    "class":"Student",
+    "firstName":"Martavious",
+    "middleName":"",
+    "lastName":"Johnson",
+    "jagNumber":"J00654321",
+    "passCode":""
   }
 ]
