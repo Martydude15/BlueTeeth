@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class JSONDriver {
 
@@ -62,48 +63,41 @@ public class JSONDriver {
     private void readPerson(JsonReader json) throws IOException {
         // Looks at everything encapsulated by {}
         json.beginObject();
-        String type = "", fname = "", mname = "", lname = "", jagnumber = "", password = "";
-        // While there is anything left to read in {}
-        while (json.hasNext()) {
-            // Pulls the next key or string defined on left side
-            String key = json.nextName();
-            // Lowers the casing for better checking
-            switch (key.toLowerCase()) {
-                case "class":
-                    type = json.nextString();
-                    break;
-                case "firstname":
-                    fname = json.nextString();
-                    break;
-                case "middlename":
-                    mname = json.nextString();
-                    break;
-                case "lastname":
-                    lname = json.nextString();
-                    break;
-                case "jagnumber":
-                    jagnumber = json.nextString();
-                    break;
-                case "passcode":
-                    password = json.nextString();
-                    break;
-                default:
-                    // Just here in case
-                    json.skipValue();
-                    break;
-            }
-            // If teacher, add to teachers
-            if (type.toLowerCase().equals("teacher")) {
-                this.teachers
-                        .add(new Teacher(fname, mname, lname, jagnumber, password));
-            }
-            // If student, add to students
-            else if (type.toLowerCase().equals("student")) {
-                this.students
-                        .add(new Student(fname, mname, lname, jagnumber));
-            }
+        json.nextName();
+        String type = json.nextString();
+        if (type.equals("Teacher")) {
+            readTeacher(json);
+        }
+        else {
+            readStudent(json);
         }
         json.endObject();
+    }
+
+    private void readStudent(JsonReader json) throws IOException {
+        json.nextName();
+        String fname = json.nextString();
+        json.nextName();
+        String mname = json.nextString();
+        json.nextName();
+        String lname = json.nextString();
+        json.nextName();
+        String jagnumber = json.nextString();
+        students.add(new Student(fname, mname, lname, jagnumber));
+    }
+
+    private void readTeacher(JsonReader json) throws IOException{
+        json.nextName();
+        String fname = json.nextString();
+        json.nextName();
+        String mname = json.nextString();
+        json.nextName();
+        String lname = json.nextString();
+        json.nextName();
+        String jagnumber = json.nextString();
+        json.nextName();
+        String password = json.nextString();
+        teachers.add(new Teacher(fname,mname, lname, jagnumber, password));
     }
 
     /**

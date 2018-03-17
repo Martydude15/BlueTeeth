@@ -1,7 +1,5 @@
 package com.example.marta.blueteeth;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -37,16 +35,12 @@ public class HomeScreen extends AppCompatActivity {
             else {
                 // Clears to allow for re-entry
                 textBox.getText().clear();
-                AlertDialog dialog = loginError();
-                dialog.show();
+                new DialogBox("Jag Number does not exist.", this);
             }
         }
         catch (IOException ioe) {
             // Just here to handle the case of the file not being found.
-            AlertDialog dialog = loginError();
-            // Changes the message to say File not found.
-            dialog.setMessage("File not found.");
-            dialog.show();
+            new DialogBox("File not found.", this);
         }
     }
 
@@ -68,36 +62,23 @@ public class HomeScreen extends AppCompatActivity {
         for (Teacher teacher : json.getTeachers()) {
             if (teacher.getJagNumber().equals(jagNumber)) {
                 // If teacher, go to next part for teacher
-                return new Intent(HomeScreen.this, TeacherHomeActivity.class);
+                Intent intent = new
+                        Intent(HomeScreen.this, TeacherHomeActivity.class);
+                // This sends the teacher or student object associated with the jagNumber
+                // to the next activity. Neat right?
+                intent.putExtra("user", teacher);
+                return intent;
             }
         }
         // Checks if the jagNumber returned from the textBox is a student
         for (Student student : json.getStudents()) {
              if (student.getJagNumber().equals(jagNumber)) {
                  // If student, go to next part for student
-                 return new Intent(HomeScreen.this, StudentHomeActivity.class);
+                 Intent intent = new
+                         Intent(HomeScreen.this, StudentHomeActivity.class);
+                 intent.putExtra("user", student);
              }
         }
         return null;
     }
-
-    /**
-     *
-     * @return
-     *      returns an alert dialog box to handle errors for File not found, and JagNumber
-     *      not found.
-     */
-    public AlertDialog loginError() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Jag Number does not exist.");
-        AlertDialog dialog = builder.create();
-        dialog.setButton(DialogInterface.BUTTON_NEUTRAL, "Ok", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        return dialog;
-    }
-
 }
