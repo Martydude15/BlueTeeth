@@ -8,8 +8,8 @@ import android.content.DialogInterface;
  * Created by randyjr on 3/17/18.
  */
 
-public class DialogBox {
-    public DialogBox(String message, Context context) {
+class DialogBox {
+    DialogBox(String message, Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(message);
         AlertDialog dialog = builder.create();

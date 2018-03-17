@@ -13,10 +13,10 @@ import android.widget.Toast;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AttedeeFragment extends Fragment {
+public class AttendeeFragment extends Fragment {
 
 
-    public AttedeeFragment() {
+    public AttendeeFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +25,7 @@ public class AttedeeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_attedee, container, false);
+        return inflater.inflate(R.layout.fragment_attendee, container, false);
     }
 
     @Override

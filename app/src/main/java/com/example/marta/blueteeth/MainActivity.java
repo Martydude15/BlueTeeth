@@ -25,19 +25,19 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton mShowDialog = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton mShowDialog = findViewById(R.id.fab);
         mShowDialog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
                 View mView = getLayoutInflater().inflate(R.layout.dialog_text_question, null);
-                final EditText mQuestion = (EditText) mView.findViewById(R.id.editQuestion);
-                final EditText mAnswer = (EditText) mView.findViewById(R.id.editAnswer);
-                Button mSend = (Button) mView.findViewById(R.id.sendbtn);
-                Button mCancel = (Button) mView.findViewById(R.id.cancelbtn);
+                final EditText mQuestion = mView.findViewById(R.id.editQuestion);
+                final EditText mAnswer = mView.findViewById(R.id.editAnswer);
+                Button mSend = mView.findViewById(R.id.sendbtn);
+                Button mCancel = mView.findViewById(R.id.cancelbtn);
 
                 mSend.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -74,13 +74,13 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //Makes Home fragment the default
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
             ft.commit();
         } else if (id == R.id.nav_attendees) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.replace(R.id.flMain,new AttedeeFragment());
+            ft.replace(R.id.flMain,new AttendeeFragment());
             ft.commit();
         } else if (id == R.id.nav_nonAttendees) {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(i);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
