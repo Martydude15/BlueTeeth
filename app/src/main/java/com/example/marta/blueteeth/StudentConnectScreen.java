@@ -13,8 +13,15 @@ public class StudentConnectScreen extends AppCompatActivity {
         setContentView(R.layout.activity_student_connect_screen);
     }
 
+    /**
+     *
+     * @param view
+     * Gives intent to switch pages
+     */
     public void testMethod(View view) {
+        // Sets intent switchPage to go from StudentConnectScreen to Student_Activity_Step1
         Intent switchPage = new Intent(StudentConnectScreen.this, Student_Activity_Step1.class);
+        // Activates page switch
         startActivity(switchPage);
     }
 

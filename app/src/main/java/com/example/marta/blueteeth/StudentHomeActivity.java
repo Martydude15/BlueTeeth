@@ -13,8 +13,15 @@ public class StudentHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_home);
     }
 
+    /**
+     *
+     * @param view
+     * Gives intent to switch pages
+     */
     public void testMethod(View view) {
+        // Sets intent switchPage to go from StudentHomeActivity to StudentConnectScreen
         Intent switchPage = new Intent(StudentHomeActivity.this, StudentConnectScreen.class);
+        // Activates page switch
         startActivity(switchPage);
     }
 }

@@ -60,7 +60,7 @@ public class HomeScreen extends AppCompatActivity {
         json.getPeople(json.getJson());
         // Checks if the jagNumber returned from the textBox is a teacher
         for (Teacher teacher : json.getTeachers()) {
-            if (teacher.getJagNumber().equals(jagNumber)) {
+            if (teacher.getJagNumber().toLowerCase().equals(jagNumber.toLowerCase())) {
                 // If teacher, go to next part for teacher
                 Intent intent = new
                         Intent(HomeScreen.this, TeacherHomeActivity.class);
@@ -72,7 +72,7 @@ public class HomeScreen extends AppCompatActivity {
         }
         // Checks if the jagNumber returned from the textBox is a student
         for (Student student : json.getStudents()) {
-             if (student.getJagNumber().equals(jagNumber)) {
+             if (student.getJagNumber().toLowerCase().equals(jagNumber.toLowerCase())) {
                  // If student, go to next part for student
                  Intent intent = new
                          Intent(HomeScreen.this, StudentHomeActivity.class);

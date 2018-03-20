@@ -22,7 +22,13 @@ public class TeacherPhoto extends AppCompatActivity {
         setContentView(R.layout.activity_teacher_photo);
     }
 
-        public void testMethod(View view) {
+    /**
+     *
+     * @param view
+     * GIves intent to switch pages
+     */
+    public void testMethod(View view) {
+
             Intent switchPage = new Intent(TeacherPhoto.this, MainActivity.class);
             startActivity(switchPage);
         }

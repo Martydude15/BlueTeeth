@@ -14,6 +14,11 @@ public class Student_Step_2 extends AppCompatActivity {
         setContentView(R.layout.activity_student__step_2);
     }
 
+    /**
+     * @param view
+     * Links the groups of Radio Buttons and gives
+     * each one a function when clicked
+     */
     public void onRadioButtonClicked(View view) {
         // Is the button now checked?
         boolean checked = ((RadioButton) view).isChecked();
@@ -35,8 +40,15 @@ public class Student_Step_2 extends AppCompatActivity {
         }
     }
 
+    /**
+     *
+     * @param view
+     * Gives intent to switch pages
+     */
     public void testMethod(View view) {
+        // Sets intent switchPage to go from Student_Step2 layout to StudentConfirmation
         Intent switchPage = new Intent(Student_Step_2.this, Student_Confirmation.class);
+        // Activates page switch
         startActivity(switchPage);
     }
 }

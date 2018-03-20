@@ -26,8 +26,9 @@ public class Student_Activity_Step1 extends AppCompatActivity {
                 .requestPermissions(this, new String[]{Manifest.permission.CAMERA}, 1);
         }
     }
-
+    // Makes it so that the button goes to the camera screen
     public void cameraClick(View view) {
+        //Gives intent for button to move after picture is taken.
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, 0);
     }
