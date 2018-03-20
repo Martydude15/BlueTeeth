@@ -35,7 +35,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getActivity(), "This will start the Bluetooth function", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "This will start the Bluetooth function.", Toast.LENGTH_SHORT).show();
             }
         });
     }

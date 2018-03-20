@@ -15,7 +15,7 @@
     <ImageView
         android:id="@+id/jagHead"
         android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_height="95dp"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         app:srcCompat="@drawable/jag_logo2" />
 
