@@ -19,7 +19,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
      */
     public void testMethod(View view) {
         // Sets intent switchPage to go from TeacherConnectScreen activity to TeacherPhoto activity
-        Intent switchPage = new Intent(TeacherConnectScreen.this, TeacherPhoto.class);
+        Intent switchPage = new Intent(TeacherConnectScreen.this, MainActivity.class);
         // Activates page switch
         startActivity(switchPage);
     }
