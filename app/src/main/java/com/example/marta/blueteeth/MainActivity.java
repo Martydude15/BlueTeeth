@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //Floating action button shows a dialog box upon press
         FloatingActionButton mShowDialog = findViewById(R.id.fab);
         mShowDialog.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,28 +39,36 @@ public class MainActivity extends AppCompatActivity
                 final EditText mAnswer = mView.findViewById(R.id.editAnswer);
                 Button mSend = mView.findViewById(R.id.sendbtn);
                 Button mCancel = mView.findViewById(R.id.cancelbtn);
+               //Makes it to where a button has to be pressed to close the dialog box
+                mBuilder.setCancelable(false);
 
+                //Show the dialog box
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+                //If a text field is empty, show an error message, else send the message and close the dialog box
                 mSend.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         if(!mQuestion.getText().toString().isEmpty() && !mAnswer.getText().toString().isEmpty()){
                             Toast.makeText(MainActivity.this, "Question has been sent.", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }else{
                             Toast.makeText(MainActivity.this, "Input a question or answer.", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
+                //Cancel button closes dialog box on press
                 mCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(MainActivity.this, "Tap outside of the dialog box.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Question cancelled.", Toast.LENGTH_SHORT).show();
+                        dialog.dismiss();
                     }
                 });
 
-                mBuilder.setView(mView);
-                AlertDialog dialog = mBuilder.create();
-                dialog.show();
+
             }
         });
 
