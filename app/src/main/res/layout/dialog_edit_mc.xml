@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
+    android:paddingTop="5dp">
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/editmcTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:text="Text Question"
+        android:text="Edit Multiple Choice"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="@color/southBlue"/>
 
     <EditText
-        android:id="@+id/editQuestion"
+        android:id="@+id/editQuestion2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -27,33 +26,65 @@
         />
 
     <EditText
-        android:id="@+id/editAnswer"
+        android:id="@+id/choice1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Choice 1"
+        />
+
+    <EditText
+        android:id="@+id/choice2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:hint="Answer"
+        android:hint="Choice 2"
+        />
+
+    <EditText
+        android:id="@+id/choice3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Choice 3"
+        />
+
+    <EditText
+        android:id="@+id/choice4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Choice 4"
         />
 
     <Button
-        android:id="@+id/sendbtn"
+        android:id="@+id/okbtn"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:text="Send"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="OK"
         android:textColor="@color/southWhite"
         android:background="@color/southRed"/>
 
     <Button
-        android:id="@+id/cancelbtn"
+        android:id="@+id/cancelbtn2"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:text="Cancel"
         android:textColor="@color/southWhite"
         android:background="@color/southBlue"/>
+
 
 </LinearLayout>

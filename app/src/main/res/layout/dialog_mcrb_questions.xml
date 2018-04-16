@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/mctitle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="Multiple Choice Question"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:textColor="@color/southBlue"/>
+
+    <TextView
+        android:id="@+id/mcquestion2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:text="Question will go here"
+        android:textColor="@color/southRed"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        />
+
+    <RadioGroup
+        android:id="@+id/rgroup1"
+        android:layout_width="match_parent"
+        android:layout_marginTop="30dp"
+        android:layout_height="178dp" >
+
+        <RadioButton
+            android:id="@+id/choicerb1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RadioButton"
+            android:textColor="@color/southBlue"
+            android:textStyle="bold"/>
+
+        <RadioButton
+            android:id="@+id/choicerb2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RadioButton"
+            android:textColor="@color/southRed"
+            android:textStyle="bold"/>
+
+        <RadioButton
+            android:id="@+id/choicerb3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RadioButton"
+            android:textColor="@color/southRed"
+            android:textStyle="bold"/>
+
+        <RadioButton
+            android:id="@+id/choicerb4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="RadioButton"
+            android:textColor="@color/southBlue"
+            android:textStyle="bold"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/sendbtn3"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:text="Send"
+        android:textColor="@color/southWhite"
+        android:background="@color/southRed"/>
+
+    <Button
+        android:id="@+id/cancelbtn4"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="10dp"
+        android:text="Cancel"
+        android:textColor="@color/southWhite"
+        android:background="@color/southBlue"/>
+
+
+</LinearLayout>

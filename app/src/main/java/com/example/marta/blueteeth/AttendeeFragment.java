@@ -36,7 +36,7 @@ public class AttendeeFragment extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(getActivity(), "Suck my nuts.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "When life gives you lemons...", Toast.LENGTH_SHORT).show();
             }
         });
     }
