@@ -9,8 +9,8 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="290dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/progressBar"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
@@ -22,11 +22,11 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="300dp"
-        android:layout_height="30dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/textView3"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_marginTop="10dp"
         android:text="One moment while the app loads."
         android:textColor="@color/southWhite"
