@@ -35,9 +35,8 @@ public class Student_Activity_Step1 extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-        ImageView imageView = findViewById(R.id.imageView);
-        imageView.setImageBitmap(bitmap);
+        Intent intent = new Intent(Student_Activity_Step1.this, Student_Step_2.class);
+        intent.putExtra("studentpic", data);
+        startActivity(intent);
     }
 }

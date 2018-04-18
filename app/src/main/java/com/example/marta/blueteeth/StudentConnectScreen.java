@@ -42,4 +42,6 @@ public class StudentConnectScreen extends AppCompatActivity {
         // Activates page switch
         startActivity(switchPage);
     }
+
+
 }

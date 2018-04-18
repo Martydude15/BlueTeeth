@@ -4,15 +4,12 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import java.io.IOException;
 import java.util.UUID;
 
-public class Bluetooth extends AppCompatActivity implements Runnable {
-
-    private static
+public class Bluetooth implements Runnable {
 
     final UUID uuid = UUID.fromString("67d338c8-42a1-11e8-842f-0ed5f89f718b");
     public BluetoothServerSocket btServer;
