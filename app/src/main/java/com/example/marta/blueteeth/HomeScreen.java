@@ -57,7 +57,7 @@ public class HomeScreen extends AppCompatActivity {
         // Create new JSONDriver to handle the json file.
         JSONDriver json = new JSONDriver(getAssets().open("login.json"));
         // Processes the json file and puts into corresponding lists.
-        json.getPeople(json.getJson());
+        json.getPeople();
         // Checks if the jagNumber returned from the textBox is a teacher
         for (Teacher teacher : json.getTeachers()) {
             if (teacher.getJagNumber().toLowerCase().equals(jagNumber.toLowerCase())) {

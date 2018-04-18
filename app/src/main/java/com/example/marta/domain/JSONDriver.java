@@ -1,15 +1,20 @@
 package com.example.marta.domain;
 
 import android.util.JsonReader;
+import android.util.JsonWriter;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JSONDriver {
 
-    private final JsonReader json;
+    private InputStream pathToJson;
+    private OutputStream osStream;
     private List<Teacher> teachers;
     private List<Student> students;
 
@@ -23,14 +28,27 @@ public class JSONDriver {
      *      handled in HomeScreen.java
      */
     public JSONDriver(InputStream pathToJson) throws IOException {
-        /*
-        Pulls in the path as InputStream because it is a super class of InputStreamReader
-        and allows for a string to be pass as the filename.
+         /*
+         Pulls in the path as InputStream because it is a super class of InputStreamReader
+         and allows for a string to be pass as the filename.
          */
-         json = new JsonReader(new InputStreamReader(pathToJson, "UTF-8"));
          // Makes sure for each new instance of JSONDriver it has a fresh list
+         this.pathToJson = pathToJson;
          teachers = new ArrayList<>();
          students = new ArrayList<>();
+    }
+
+//    public addStudent(Student user, String) throws IOException {
+//        JsonWriter writer = new JsonWriter(new OutputStreamWriter(osStream, "UTF-8"));
+//    }
+
+    /**
+     * Creates the json reader and passes through to getPeople(JsonReader)
+     * @throws IOException
+     */
+    public void getPeople() throws IOException {
+        JsonReader json = new JsonReader(new InputStreamReader(pathToJson, "UTF-8"));
+        getPeople(json);
     }
 
     /**
@@ -106,15 +124,6 @@ public class JSONDriver {
         json.nextName(); String jagnumber = json.nextString();
         json.nextName(); String password = json.nextString();
         teachers.add(new Teacher(fname,mname, lname, jagnumber, password));
-    }
-
-    /**
-     *
-     * @return
-     *      returns the json file so it can be handled in different classes
-     */
-    public JsonReader getJson() {
-        return this.json;
     }
 
     /**

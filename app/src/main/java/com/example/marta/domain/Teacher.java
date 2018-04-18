@@ -4,6 +4,8 @@ package com.example.marta.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
 /**
  * Created by Blake on 3/9/2018.
  */
@@ -15,6 +17,31 @@ public class Teacher extends Person implements Parcelable{
     Teacher(String firstName, String middleName, String lastName, String jagNumber, String passCode) {
         super(firstName, middleName, lastName, jagNumber);
         this.passCode = passCode;
+        /**
+         * @TODO: Need to add code here to take care of empty string. Should not allow.
+         */
+        if (passCode.equals("")) {
+            throw new IllegalArgumentException();
+        }
+    }
+
+    /**
+     *
+     * @return
+     *      Returns a jsonObject to write to json file
+     */
+    public JSONObject toJson() {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("class", "Student");
+            jsonObject.put("middleName", getFirstName());
+            jsonObject.put("lastName", getMiddleName());
+            jsonObject.put("jagNumber", getLastName());
+            jsonObject.put("passCode", getPassCode());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return jsonObject;
     }
 
     /**
@@ -47,15 +74,10 @@ public class Teacher extends Person implements Parcelable{
      * @return
      *      the password.
      */
-    public String getPassCode() {
-        /**
-         * @TODO: Need to add code here to take care of empty string. Should not allow.
-         */
-        if (passCode.equals("")) {
-            throw new IllegalArgumentException();
-        }
+    private String getPassCode() {
         return passCode;
     }
+
     private void setPassCode(String passCode){
        this.passCode = passCode;
     }

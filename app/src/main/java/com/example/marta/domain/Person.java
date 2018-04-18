@@ -3,6 +3,8 @@ package com.example.marta.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.json.JSONObject;
+
 /**
  * Created by Blake on 3/9/2018.
  */
