@@ -9,10 +9,25 @@ import com.example.marta.domain.Bluetooth;
 
 public class TeacherConnectScreen extends AppCompatActivity {
 
+    public BluetoothAdapter btAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (btAdapter != null) {
+            if (!btAdapter.isEnabled())
+            {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, 0);
+            } else
+            {
+                new DialogBox("Bluetooth is already on.", TeacherConnectScreen.this);
+            }
+        } else {
+            new DialogBox("Bluetooth is not available on this device.", TeacherConnectScreen.this);
+        }
     }
 
     /**
@@ -26,9 +41,4 @@ public class TeacherConnectScreen extends AppCompatActivity {
         // Activates page switch
         startActivity(switchPage);
     }
-
-    public View getView() {
-        return getWindow().getDecorView().getRootView().findViewById(android.R.id.content);
-    }
-
 }

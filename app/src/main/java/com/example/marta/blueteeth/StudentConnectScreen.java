@@ -14,7 +14,19 @@ public class StudentConnectScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_connect_screen);
-
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+        if (btAdapter != null) {
+            if (!btAdapter.isEnabled())
+            {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, 0);
+            } else
+            {
+                new DialogBox("Bluetooth is already on.", StudentConnectScreen.this);
+            }
+        } else {
+            new DialogBox("Bluetooth is not available on this device.", StudentConnectScreen.this);
+        }
     }
 
     /**
@@ -28,5 +40,4 @@ public class StudentConnectScreen extends AppCompatActivity {
         // Activates page switch
         startActivity(switchPage);
     }
-
 }
