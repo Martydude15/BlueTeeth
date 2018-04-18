@@ -8,9 +8,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="Student Add Fragment"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_gravity="center_horizontal"/>
+        android:textStyle="bold" />
 
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="wrap_content"
+        android:layout_height="355dp"
+        android:layout_marginTop="60dp" />
+
+    <Button
+        android:id="@+id/addBtn2"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="430dp"
+        android:background="@color/southRed"
+        android:text="Add"
+        android:textColor="@color/southWhite" />
 </FrameLayout>

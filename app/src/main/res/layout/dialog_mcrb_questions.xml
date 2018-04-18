@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/mctitle2"
+        android:id="@+id/mctitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -16,7 +16,7 @@
         android:textColor="@color/southBlue"/>
 
     <TextView
-        android:id="@+id/mcquestion2"
+        android:id="@+id/mcquestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -72,7 +72,7 @@
     </RadioGroup>
 
     <Button
-        android:id="@+id/sendbtn3"
+        android:id="@+id/sendbtn2"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -83,7 +83,7 @@
         android:background="@color/southRed"/>
 
     <Button
-        android:id="@+id/cancelbtn4"
+        android:id="@+id/cancelbtn3"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

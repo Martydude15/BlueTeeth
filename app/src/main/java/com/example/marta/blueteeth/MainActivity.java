@@ -139,14 +139,14 @@ public class MainActivity extends AppCompatActivity
 
                             AlertDialog.Builder mBuilder3 = new AlertDialog.Builder(MainActivity.this);
                             View mView3 = getLayoutInflater().inflate(R.layout.dialog_mcrb_questions, null);
-                            TextView mQuestion2 = mView3.findViewById(R.id.mcquestion2);
+                            TextView mQuestion2 = mView3.findViewById(R.id.mcquestion);
                             RadioGroup mGroup1 = mView3.findViewById(R.id.rgroup1);
                             RadioButton mChoiceBtn1 = mView3.findViewById(R.id.choicerb1);
                             RadioButton mChoiceBtn2 = mView3.findViewById(R.id.choicerb2);
                             RadioButton mChoiceBtn3 = mView3.findViewById(R.id.choicerb3);
                             RadioButton mChoiceBtn4 = mView3.findViewById(R.id.choicerb4);
-                            Button mSend2 = mView3.findViewById(R.id.sendbtn3);
-                            Button mCancel3 = mView3.findViewById(R.id.cancelbtn4);
+                            Button mSend2 = mView3.findViewById(R.id.sendbtn2);
+                            Button mCancel3 = mView3.findViewById(R.id.cancelbtn3);
                             //Makes it to where a button has to be pressed to close the dialog box
                             mBuilder3.setCancelable(false);
                             //Transfers the strings from the Edit MC dialog
