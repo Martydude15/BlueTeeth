@@ -9,14 +9,10 @@ import com.example.marta.domain.Bluetooth;
 
 public class TeacherConnectScreen extends AppCompatActivity {
 
-    public BluetoothAdapter btAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
-        Bluetooth bt = new Bluetooth(btAdapter);
-        bt.on(getView(), btAdapter);
     }
 
     /**

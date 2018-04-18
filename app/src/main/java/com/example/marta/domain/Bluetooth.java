@@ -19,10 +19,6 @@ public class Bluetooth extends AppCompatActivity implements Runnable {
     public BluetoothServerSocket btServer;
     public BluetoothServerSocket btServer2;
 
-    public Bluetooth(BluetoothAdapter btAdapter) {
-        this.btAdapter = btAdapter.getDefaultAdapter();
-    }
-
     public void on(View v, BluetoothAdapter btAdapter) {
         Intent enableBtIntent;
         if (!btAdapter.isEnabled())
