@@ -74,7 +74,7 @@ public class Teacher extends Person implements Parcelable{
      * @return
      *      the password.
      */
-    private String getPassCode() {
+    public String getPassCode() {
         return passCode;
     }
 
