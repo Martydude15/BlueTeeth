@@ -14,7 +14,16 @@ public class TeacherConnectScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
-
+        btAdapter = btAdapter.getDefaultAdapter();
+        Intent enableBtIntent;
+        if (!btAdapter.isEnabled())
+        {
+            enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 0);
+        } else
+        {
+            new DialogBox("Bluetooth is already on.", TeacherConnectScreen.this);
+        }
     }
 
     /**
