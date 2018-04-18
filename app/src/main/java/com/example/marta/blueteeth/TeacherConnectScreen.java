@@ -20,7 +20,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
             if (!btAdapter.isEnabled())
             {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBtIntent, 0);
+                startActivity(enableBtIntent);
             } else
             {
                 new DialogBox("Bluetooth is already on.", TeacherConnectScreen.this);
