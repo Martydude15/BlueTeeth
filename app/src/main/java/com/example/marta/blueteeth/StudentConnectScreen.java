@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 public class StudentConnectScreen extends AppCompatActivity {
@@ -19,6 +20,7 @@ public class StudentConnectScreen extends AppCompatActivity {
             if (!btAdapter.isEnabled())
             {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                Log.d("Blueteeth", "Turning bluetooth on.");
                 startActivity(enableBtIntent);
             } else
             {

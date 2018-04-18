@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import com.example.marta.domain.Bluetooth;
 
@@ -20,6 +21,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
             if (!btAdapter.isEnabled())
             {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                Log.d("Blueteeth", "Turning bluetooth on.");
                 startActivity(enableBtIntent);
             } else
             {
