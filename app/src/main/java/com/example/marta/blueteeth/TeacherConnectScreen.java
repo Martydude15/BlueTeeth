@@ -16,6 +16,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
         Bluetooth bt = new Bluetooth(btAdapter);
+        bt.on(getView());
     }
 
     /**

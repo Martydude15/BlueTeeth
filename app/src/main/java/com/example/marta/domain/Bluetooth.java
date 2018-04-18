@@ -23,7 +23,7 @@ public class Bluetooth extends AppCompatActivity implements Runnable {
         this.btAdapter = btAdapter.getDefaultAdapter();
     }
 
-    public void on(View v, BluetoothAdapter btAdapter) {
+    public void on(View v) {
         Intent enableBtIntent;
         if (!btAdapter.isEnabled())
         {
@@ -35,12 +35,12 @@ public class Bluetooth extends AppCompatActivity implements Runnable {
         }
     }
 
-    public void off(View v, BluetoothAdapter btAdapter) {
+    public void off(View v) {
         btAdapter.disable();
         new DialogBox("Bluetooth is off.", v.getContext());
     }
 
-    public void discoverable(View v, BluetoothAdapter btAdapter) {
+    public void discoverable(View v) {
         Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
         discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
         startActivityForResult(discover, 1);
