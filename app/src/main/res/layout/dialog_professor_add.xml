@@ -5,19 +5,19 @@
     android:padding="5dp">
 
     <TextView
-        android:id="@+id/studentAddTxt"
+        android:id="@+id/professorAddTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="5dp"
-        android:text="Add a Student"
+        android:text="Add a Professor"
         android:textSize="25sp"
         android:textStyle="bold"
         android:textColor="@color/southBlue"/>
 
 
     <EditText
-        android:id="@+id/editFname"
+        android:id="@+id/editFname2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -27,7 +27,7 @@
         />
 
     <EditText
-        android:id="@+id/editMname"
+        android:id="@+id/editMname2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -37,7 +37,7 @@
         />
 
     <EditText
-        android:id="@+id/editLname"
+        android:id="@+id/editLname2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -47,7 +47,7 @@
         />
 
     <EditText
-        android:id="@+id/editJnumber"
+        android:id="@+id/editJnumber2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -56,8 +56,18 @@
         android:hint="Jag Number"
         />
 
+    <EditText
+        android:id="@+id/editPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Password"
+        />
+
     <Button
-        android:id="@+id/addBtn"
+        android:id="@+id/addBtn3"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -68,7 +78,7 @@
         android:background="@color/southRed"/>
 
     <Button
-        android:id="@+id/cancelbtn4"
+        android:id="@+id/cancelbtn6"
         android:layout_width="160dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
