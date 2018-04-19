@@ -43,7 +43,6 @@
         android:background="@drawable/bluetooth_button_with_text2"
         android:contentDescription="TODO"
         android:linksClickable="false"
-        android:onClick="testMethod"
         android:visibility="visible" />
 
     <ImageButton
@@ -55,7 +54,6 @@
         android:layout_marginLeft="25dp"
         android:background="@drawable/floating_action_button_with_symbol3"
         android:linksClickable="false"
-        android:onClick="testMethod"
         android:visibility="visible"
         android:contentDescription="TODO" />
 

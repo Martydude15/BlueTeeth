@@ -47,7 +47,6 @@ public class HomeFragment extends Fragment {
         view.findViewById(R.id.btButton2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Toast.makeText(getActivity(), "This will start the Bluetooth function.", Toast.LENGTH_SHORT).show();
             }
         });

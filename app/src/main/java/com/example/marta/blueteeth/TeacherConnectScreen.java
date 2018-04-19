@@ -10,15 +10,13 @@ import com.example.marta.domain.Bluetooth;
 
 public class TeacherConnectScreen extends AppCompatActivity {
 
-    public BluetoothAdapter btAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
-        btAdapter = BluetoothAdapter.getDefaultAdapter();
-        Bluetooth bt = new Bluetooth(btAdapter, this);
+        Bluetooth bt = new Bluetooth(BluetoothAdapter.getDefaultAdapter(), this);
         bt.on();
+        bt.discoverable();
     }
 
     /**
@@ -32,4 +30,6 @@ public class TeacherConnectScreen extends AppCompatActivity {
         // Activates page switch
         startActivity(switchPage);
     }
+
+
 }

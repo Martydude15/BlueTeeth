@@ -47,7 +47,8 @@ public class Bluetooth implements Runnable {
         Log.d("Blueteeth", "Turning bluetooth off.");
     }
 
-    public void discoverable(Context context) {
+    public void discoverable() {
+        btAdapter.setName("TEACHER");
         Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
         discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
         context.startActivity(discover);

@@ -16,5 +16,4 @@ public class TeacherHomeScreenActivity extends AppCompatActivity {
        // startActivity(switchPage);
     //}
 
-
 }
