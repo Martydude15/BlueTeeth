@@ -20,12 +20,7 @@ public class StudentConnectScreen extends AppCompatActivity {
         setContentView(R.layout.activity_student_connect_screen);
         Bluetooth bluetooth = new Bluetooth(BluetoothAdapter.getDefaultAdapter(), this);
         bluetooth.on();
-        Student student = getIntent().getParcelableExtra("user");
-        try {
-            bluetooth.discoverable(student.getFirstName());
-        } catch (Exception e) {
-            new DialogBox(e.toString(), this);
-        }
+        bluetooth.discoverable("TEST");
     }
 
     /**
