@@ -127,11 +127,14 @@ public class StudentAddFragment extends Fragment {
                                             String lName = mLname.getText().toString();
                                             String jNumber = mJnumber.getText().toString();
 
+
                                             try {
                                                 jsonDriver.addOneStudent(new Student(fName, mName, lName, jNumber));
+                                                jsonDriver.getPeople();
                                             } catch (Exception e) {
                                                 new DialogBox(e.toString(), getContext());
                                             }
+
 
 
 
