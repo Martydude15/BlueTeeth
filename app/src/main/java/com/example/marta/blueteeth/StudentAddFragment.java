@@ -28,6 +28,8 @@ import java.util.List;
  */
 public class StudentAddFragment extends Fragment {
 
+    public JSONDriver jsonDriver;
+
     public StudentAddFragment() {
         // Required empty public constructor
     }
@@ -50,7 +52,7 @@ public class StudentAddFragment extends Fragment {
     }
 
     public void setUp(Context context, View view) throws IOException {
-        JSONDriver jsonDriver = new JSONDriver("login.json", context);
+        jsonDriver = new JSONDriver("login.json", context);
         List<Student> students = jsonDriver.getStudents();
         ListView listView = view.findViewById(R.id.listView1);
 
@@ -120,6 +122,20 @@ public class StudentAddFragment extends Fragment {
                                                 && !mLname.getText().toString().isEmpty() && !mJnumber.getText().toString().isEmpty())
                                         {
 
+                                            String fName = mFname.getText().toString();
+                                            String mName = mMname.getText().toString();
+                                            String lName = mLname.getText().toString();
+                                            String jNumber = mJnumber.getText().toString();
+
+                                            try {
+                                                jsonDriver.addOneStudent(new Student(fName, mName, lName, jNumber));
+                                            } catch (Exception e) {
+                                                new DialogBox(e.toString(), getContext());
+                                            }
+
+
+
+
                                             Toast.makeText(getActivity(), "Add complete.", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
                                         }else{
@@ -170,6 +186,14 @@ public class StudentAddFragment extends Fragment {
                                         if(!mFname2.getText().toString().isEmpty() && !mMname2.getText().toString().isEmpty() && !mLname2.getText().toString().isEmpty()
                                                 && !mJnumber2.getText().toString().isEmpty() && !mPassword.getText().toString().isEmpty())
                                         {
+
+                                            String fName2 = mFname2.getText().toString();
+                                            String mName2 = mMname2.getText().toString();
+                                            String lName2 = mLname2.getText().toString();
+                                            String jNumber2 = mJnumber2.getText().toString();
+                                            String password = mPassword.getText().toString();
+
+
 
                                             Toast.makeText(getActivity(), "Add complete.", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();
