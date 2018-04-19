@@ -10,7 +10,7 @@ import org.json.JSONObject;
 
 public class Student extends Person implements Parcelable {
 
-    Student(String firstName, String middleName, String lastName, String jagNumber)
+    public Student(String firstName, String middleName, String lastName, String jagNumber)
    {
        super(firstName,middleName,lastName,jagNumber);
    }
