@@ -81,6 +81,7 @@ public class StudentAddFragment extends Fragment {
                 //Makes it to where a button has to be pressed to close the dialog box
                 mBuilder4.setCancelable(false);
 
+
                 //Show the dialog box
                 mBuilder4.setView(mView4);
                 final AlertDialog dialog = mBuilder4.create();
