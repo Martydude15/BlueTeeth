@@ -30,6 +30,7 @@ public class JSONDriver {
             getPeople();
         }
         this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
+        addAll();
     }
 
     /**
