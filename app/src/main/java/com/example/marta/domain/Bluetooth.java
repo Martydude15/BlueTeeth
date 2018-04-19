@@ -42,19 +42,19 @@ public class Bluetooth implements Runnable {
         }
     }
 
-    public void off(BluetoothAdapter btAdapter) {
+    public void off() {
         btAdapter.disable();
         Log.d("Blueteeth", "Turning bluetooth off.");
     }
 
-    public Intent discoverable(BluetoothAdapter btAdapter, Context context) {
+    public void discoverable(Context context) {
         Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
         discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-        return discover;
+        context.startActivity(discover);
     }
 
 
-    public void acceptConnect(BluetoothAdapter btAdapter) {
+    public void acceptConnect() {
         btServer = null;
         try {
             btServer = btAdapter.listenUsingRfcommWithServiceRecord("BLUETEETH", uuid);
