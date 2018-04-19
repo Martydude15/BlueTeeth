@@ -47,6 +47,16 @@
             android:onClick="onRadioButtonClicked"
             android:text="C"
             android:textColor="@color/southWhite" />
+
+        <RadioButton
+            android:id="@+id/radioButton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/southWhite"
+            android:onClick="onRadioButtonClicked"
+            android:text="D"
+            android:textColor="@color/southWhite" />
+
     </RadioGroup>
 
     <TextView
@@ -84,6 +94,7 @@
         android:background="@drawable/submit_button"
         android:text="Submit"
         android:onClick="testMethod"
+        android:textColor="@color/southWhite"
         />
 
 </RelativeLayout>

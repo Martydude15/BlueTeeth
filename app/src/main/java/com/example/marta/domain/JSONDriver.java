@@ -3,6 +3,10 @@ package com.example.marta.domain;
 import android.content.Context;
 import android.util.JsonReader;
 import android.util.JsonWriter;
+
+import com.example.marta.blueteeth.DialogBox;
+
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -15,15 +19,21 @@ public class JSONDriver {
 
     private InputStream istream;
     private OutputStream ostream;
-
+    private Context context;
     private List<Teacher> teachers;
     private List<Student> students;
 
     public JSONDriver(String filepath, Context context) throws IOException {
-        this.istream = context.openFileInput(filepath);
+        this.context = context;
         teachers = new ArrayList<>();
         students = new ArrayList<>();
-        getPeople();
+        if (new File(context.getFilesDir() + "/" + filepath).exists()) {
+            this.istream = context.openFileInput(filepath);
+            getPeople();
+        } else {
+            new DialogBox("File is empty.", context);
+            this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
+        }
     }
 
     /**
@@ -72,6 +82,7 @@ public class JSONDriver {
 
     public void addOneStudent(Student newStudent) throws IOException {
         JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
+        students.add(newStudent);
         writer.beginArray();
         for (Teacher teacher : teachers) {
             addTeacher(teacher, writer);
@@ -86,6 +97,7 @@ public class JSONDriver {
 
     public void addOneTeacher(Teacher newTeacher) throws IOException {
         JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
+        teachers.add(newTeacher);
         writer.beginArray();
         for (Teacher teacher : teachers) {
             addTeacher(teacher, writer);
