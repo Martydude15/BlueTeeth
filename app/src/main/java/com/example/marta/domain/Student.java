@@ -19,12 +19,18 @@ public class Student extends Person implements Parcelable {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("class", "Student");
-            jsonObject.put("middleName", getFirstName());
-            jsonObject.put("lastName", getMiddleName());
-            jsonObject.put("jagNumber", getLastName());
+            jsonObject.put("firstName", getFirstName());
+            jsonObject.put("middleName", getMiddleName());
+            jsonObject.put("lastName", getLastName());
+            jsonObject.put("jagNumber", getJagNumber());
         } catch (Exception e) {
             e.printStackTrace();
         }
         return jsonObject;
     }
+
+    public String toString() {
+        return getFirstName() + " " + getMiddleName() + " " + getLastName();
+    }
+
 }

@@ -40,7 +40,7 @@ public class HomeScreen extends AppCompatActivity {
         }
         catch (IOException ioe) {
             // Just here to handle the case of the file not being found.
-            new DialogBox("File not found.", this);
+            new DialogBox(ioe.getMessage(), this);
         }
     }
 
@@ -55,9 +55,9 @@ public class HomeScreen extends AppCompatActivity {
      */
     public Intent verifyLogin(String jagNumber) throws IOException {
         // Create new JSONDriver to handle the json file.
-        JSONDriver json = new JSONDriver(getAssets().open("login.json"));
+        JSONDriver json = new JSONDriver(getAssets().open("login.json"), this);
         // Processes the json file and puts into corresponding lists.
-        json.getPeople();
+        // This happens in the background json.getPeople();
         // Checks if the jagNumber returned from the textBox is a teacher
         for (Teacher teacher : json.getTeachers()) {
             if (teacher.getJagNumber().toLowerCase().equals(jagNumber.toLowerCase())) {
