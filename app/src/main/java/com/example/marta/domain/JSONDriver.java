@@ -28,7 +28,6 @@ public class JSONDriver {
         if (file.exists()) {
             this.istream = context.openFileInput(filepath);
             getPeople();
-            addAll();
         }
         this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
     }
