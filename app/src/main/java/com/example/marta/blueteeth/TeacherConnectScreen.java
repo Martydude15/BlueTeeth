@@ -17,19 +17,8 @@ public class TeacherConnectScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
         btAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (btAdapter != null) {
-            if (!btAdapter.isEnabled())
-            {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                Log.d("Blueteeth", "Turning bluetooth on.");
-                startActivity(enableBtIntent);
-            } else
-            {
-                new DialogBox("Bluetooth is already on.", TeacherConnectScreen.this);
-            }
-        } else {
-            new DialogBox("Bluetooth is not available on this device.", TeacherConnectScreen.this);
-        }
+        Bluetooth bt = new Bluetooth(btAdapter, this);
+        bt.on();
     }
 
     /**
