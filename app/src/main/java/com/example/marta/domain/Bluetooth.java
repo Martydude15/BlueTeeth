@@ -23,7 +23,6 @@ public class Bluetooth  {
     public Bluetooth(BluetoothAdapter btAdapter, Context context) {
         this.context = context;
         this.btAdapter = btAdapter;
-        context.registerReceiver(broadcastReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
     }
 
     public void on() {
@@ -55,6 +54,7 @@ public class Bluetooth  {
     }
 
     public void discover() {
+        context.registerReceiver(broadcastReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
