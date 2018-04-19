@@ -32,8 +32,8 @@ public class JSONDriver {
             getPeople();
         } else {
             new DialogBox("File is empty.", context);
-            this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
         }
+        this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
     }
 
     /**
