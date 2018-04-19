@@ -45,7 +45,7 @@ public class JSONDriver {
      * @throws IOException
      *      handled in HomeScreen.java
      */
-    public JSONDriver(InputStream istream) throws IOException {
+    public JSONDriver(InputStream istream, Context context) throws IOException {
          /*
          Pulls in the path as InputStream because it is a super class of InputStreamReader
          and allows for a string to be pass as the filename.
