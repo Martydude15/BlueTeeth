@@ -29,10 +29,10 @@ public class JSONDriver {
         students = new ArrayList<>();
         if (new File(context.getFilesDir() + "/" + filepath).exists()) {
             this.istream = context.openFileInput(filepath);
+            this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
             getPeople();
         } else {
             new DialogBox("File is empty.", context);
-            this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
         }
     }
 
