@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.example.marta.domain.Bluetooth;
+import com.example.marta.domain.Student;
+
 public class StudentConnectScreen extends AppCompatActivity {
 
     public BluetoothAdapter btAdapter;
@@ -15,20 +18,10 @@ public class StudentConnectScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_connect_screen);
-        btAdapter = BluetoothAdapter.getDefaultAdapter();
-        if (btAdapter != null) {
-            if (!btAdapter.isEnabled())
-            {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                Log.d("Blueteeth", "Turning bluetooth on.");
-                startActivity(enableBtIntent);
-            } else
-            {
-                new DialogBox("Bluetooth is already on.", StudentConnectScreen.this);
-            }
-        } else {
-            new DialogBox("Bluetooth is not available on this device.", StudentConnectScreen.this);
-        }
+        Bluetooth bluetooth = new Bluetooth(BluetoothAdapter.getDefaultAdapter(), this);
+        bluetooth.on();
+        Student student = getIntent().getParcelableExtra("user");
+        bluetooth.discoverable(student.getFirstName());
     }
 
     /**

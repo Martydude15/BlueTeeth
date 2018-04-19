@@ -1,29 +1,29 @@
 package com.example.marta.domain;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothServerSocket;
 import android.bluetooth.BluetoothSocket;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.util.Log;
 
 import com.example.marta.blueteeth.DialogBox;
-import com.example.marta.blueteeth.TeacherConnectScreen;
-
-import java.io.IOException;
 import java.util.UUID;
 
-public class Bluetooth implements Runnable {
+public class Bluetooth  {
 
     final UUID uuid = UUID.fromString("67d338c8-42a1-11e8-842f-0ed5f89f718b");
     private Context context;
     private BluetoothAdapter btAdapter;
-    public BluetoothServerSocket btServer;
-    public BluetoothServerSocket btServer2;
+    public BroadcastReceiver broadcastReceiver;
 
     public Bluetooth(BluetoothAdapter btAdapter, Context context) {
         this.context = context;
         this.btAdapter = btAdapter;
+        context.registerReceiver(broadcastReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
     }
 
     public void on() {
@@ -47,30 +47,24 @@ public class Bluetooth implements Runnable {
         Log.d("Blueteeth", "Turning bluetooth off.");
     }
 
-    public void discoverable() {
-        btAdapter.setName("TEACHER");
+    public void discoverable(String name) {
+        btAdapter.setName(name);
         Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
         discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
         context.startActivity(discover);
     }
 
-
-    public void acceptConnect() {
-        btServer = null;
-        try {
-            btServer = btAdapter.listenUsingRfcommWithServiceRecord("BLUETEETH", uuid);
-        } catch (Exception e) { }
-        btServer2 = btServer;
-    }
-
-    public void run() {
-        BluetoothSocket sock = null;
-        while (true) {
-            try {
-                sock = btServer2.accept();
-            } catch (IOException ioe) {
-                break;
+    public void discover() {
+        broadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                String action = intent.getAction();
+                if(BluetoothDevice.ACTION_FOUND.equals(action)) {
+                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                    new DialogBox(device.getName() + "\t" + device.getAddress(), context);
+                }
             }
-        }
+        };
     }
+
 }
