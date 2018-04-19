@@ -3,9 +3,6 @@ package com.example.marta.domain;
 import android.content.Context;
 import android.util.JsonReader;
 import android.util.JsonWriter;
-
-import com.example.marta.blueteeth.DialogBox;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,15 +21,14 @@ public class JSONDriver {
     private List<Student> students;
 
     public JSONDriver(String filepath, Context context) throws IOException {
+        File file = new File(context.getFilesDir() + "/" + filepath);
         this.context = context;
         teachers = new ArrayList<>();
         students = new ArrayList<>();
-        if (new File(context.getFilesDir() + "/" + filepath).exists()) {
+        if (file.exists()) {
             this.istream = context.openFileInput(filepath);
-            this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
             getPeople();
-        } else {
-            new DialogBox("File is empty.", context);
+            addAll();
         }
         this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
     }
@@ -46,13 +42,13 @@ public class JSONDriver {
      * @throws IOException
      *      handled in HomeScreen.java
      */
-    public JSONDriver(InputStream istream, Context context) throws IOException {
+    public JSONDriver(InputStream inputStream, Context context) throws IOException {
          /*
          Pulls in the path as InputStream because it is a super class of InputStreamReader
          and allows for a string to be pass as the filename.
          */
          // Makes sure for each new instance of JSONDriver it has a fresh list
-         this.istream = istream;
+         this.istream = inputStream;
          teachers = new ArrayList<>();
          students = new ArrayList<>();
          getPeople();
@@ -82,8 +78,8 @@ public class JSONDriver {
     }
 
     public void addOneStudent(Student newStudent) throws IOException {
-        JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
         students.add(newStudent);
+        JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream));
         writer.beginArray();
         for (Teacher teacher : teachers) {
             addTeacher(teacher, writer);
@@ -91,14 +87,13 @@ public class JSONDriver {
         for (Student student : students) {
             addStudent(student, writer);
         }
-        addStudent(newStudent, writer);
         writer.endArray();
         writer.close();
     }
 
     public void addOneTeacher(Teacher newTeacher) throws IOException {
-        JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
         teachers.add(newTeacher);
+        JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
         writer.beginArray();
         for (Teacher teacher : teachers) {
             addTeacher(teacher, writer);
@@ -106,7 +101,6 @@ public class JSONDriver {
         for (Student student : students) {
             addStudent(student, writer);
         }
-        addTeacher(newTeacher, writer);
         writer.endArray();
         writer.close();
     }

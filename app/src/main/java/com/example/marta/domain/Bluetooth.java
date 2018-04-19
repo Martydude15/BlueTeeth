@@ -2,8 +2,6 @@ package com.example.marta.domain;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothServerSocket;
-import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +21,7 @@ public class Bluetooth  {
     public Bluetooth(BluetoothAdapter btAdapter, Context context) {
         this.context = context;
         this.btAdapter = btAdapter;
+        context.registerReceiver(broadcastReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
     }
 
     public void on() {
@@ -54,8 +53,6 @@ public class Bluetooth  {
     }
 
     public void discover() {
-        context.registerReceiver(broadcastReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
-        btAdapter.startDiscovery();
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {

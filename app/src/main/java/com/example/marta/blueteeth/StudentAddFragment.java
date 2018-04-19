@@ -28,8 +28,6 @@ import java.util.List;
  */
 public class StudentAddFragment extends Fragment {
 
-    public JSONDriver jsonDriver;
-
     public StudentAddFragment() {
         // Required empty public constructor
     }
@@ -39,10 +37,9 @@ public class StudentAddFragment extends Fragment {
                              Bundle savedInstanceState) {
         // String[] students = {"Test 0", "Test 1", "Test 2", "Test 3", "Test 4", "Test 5", "Test 6", "Test 7", "Test 8", "Test 9"};
         View view = inflater.inflate(R.layout.fragment_student_add, container, false);
-
+        Context context = getContext();
         try {
-            Log.d("BLUETEETH", "Going into setup.");
-            setUp(getContext(), view);
+            setUp(context, view);
         } catch (Exception e) {
             Log.d("BLUETEETH", e.toString());
         }
@@ -52,7 +49,7 @@ public class StudentAddFragment extends Fragment {
     }
 
     public void setUp(Context context, View view) throws IOException {
-        jsonDriver = new JSONDriver("login.json", context);
+        JSONDriver jsonDriver = new JSONDriver("login.json", context);
         List<Student> students = jsonDriver.getStudents();
         ListView listView = view.findViewById(R.id.listView1);
 
@@ -129,10 +126,12 @@ public class StudentAddFragment extends Fragment {
 
 
                                             try {
+                                                JSONDriver jsonDriver = new JSONDriver("login.json", getContext());
                                                 jsonDriver.addOneStudent(new Student(fName, mName, lName, jNumber));
-                                                jsonDriver.getPeople();
+                                                setUp(getContext(), view);
                                             } catch (Exception e) {
                                                 new DialogBox(e.toString(), getContext());
+                                                e.printStackTrace();
                                             }
 
 
