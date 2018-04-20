@@ -53,6 +53,7 @@ public class Bluetooth  {
     }
 
     public void discover() {
+        btAdapter.startDiscovery();
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
