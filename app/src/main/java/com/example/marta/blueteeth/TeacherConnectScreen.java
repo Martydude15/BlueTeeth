@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import static android.bluetooth.BluetoothDevice.ACTION_FOUND;
@@ -50,10 +49,10 @@ public class TeacherConnectScreen extends AppCompatActivity {
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             } else
             {
-                new DialogBox("Bluetooth is already on.", this);
+                Toast.makeText(this,"Bluetooth is already on.", Toast.LENGTH_LONG).show();
             }
         } else {
-            new DialogBox("Bluetooth is not available on this device.", this);
+            Toast.makeText(this,"Bluetooth is not available on this device.", Toast.LENGTH_LONG).show();
         }
     }
 
