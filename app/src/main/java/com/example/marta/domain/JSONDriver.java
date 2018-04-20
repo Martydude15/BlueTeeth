@@ -42,13 +42,13 @@ public class JSONDriver {
      * @throws IOException
      *      handled in HomeScreen.java
      */
-    public JSONDriver(InputStream inputStream, Context context) throws IOException {
+    public JSONDriver(InputStream istream, Context context) throws IOException {
          /*
          Pulls in the path as InputStream because it is a super class of InputStreamReader
          and allows for a string to be pass as the filename.
          */
          // Makes sure for each new instance of JSONDriver it has a fresh list
-         this.istream = inputStream;
+         this.istream = istream;
          teachers = new ArrayList<>();
          students = new ArrayList<>();
          getPeople();
@@ -88,7 +88,6 @@ public class JSONDriver {
             addStudent(student, writer);
         }
         writer.endArray();
-        writer.close();
     }
 
     public void addOneTeacher(Teacher newTeacher) throws IOException {
@@ -102,7 +101,6 @@ public class JSONDriver {
             addStudent(student, writer);
         }
         writer.endArray();
-        writer.close();
     }
 
     public void addAll() throws IOException {
