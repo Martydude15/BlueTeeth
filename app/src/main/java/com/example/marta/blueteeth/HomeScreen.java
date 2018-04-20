@@ -56,7 +56,9 @@ public class HomeScreen extends AppCompatActivity {
      * @throws IOException
      */
     public Intent verifyLogin(String jagNumber) throws IOException {
-        JSONDriver json2 = new JSONDriver(getAssets().open("login.json"), this);
+        if (!new File(this.getFilesDir() + "/" + "login.json").exists()) {
+            new JSONDriver(getAssets().open("login.json"), this);
+        }
         // Create new JSONDriver to handle the json file.
         JSONDriver json = new JSONDriver("login.json", this);
 
