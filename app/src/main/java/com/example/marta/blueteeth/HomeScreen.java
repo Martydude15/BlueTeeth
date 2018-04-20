@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import com.example.marta.domain.*;
+
+import java.io.File;
 import java.io.IOException;
 
 public class HomeScreen extends AppCompatActivity {
@@ -54,8 +56,14 @@ public class HomeScreen extends AppCompatActivity {
      * @throws IOException
      */
     public Intent verifyLogin(String jagNumber) throws IOException {
+        JSONDriver json;
         // Create new JSONDriver to handle the json file.
-        JSONDriver json = new JSONDriver(getAssets().open("login.json"), this);
+        if (new File(this.getFilesDir() + "/" + "login.json").exists())
+        {
+            json = new JSONDriver("login.json", this);
+        } else {
+            json = new JSONDriver(getAssets().open("login.json"), this);
+        }
         // Processes the json file and puts into corresponding lists.
         // This happens in the background json.getPeople();
         // Checks if the jagNumber returned from the textBox is a teacher
