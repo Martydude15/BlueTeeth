@@ -25,6 +25,11 @@ public class Bluetooth  {
         this.broadcastReceiver = broadcastReceiver;
     }
 
+    public Bluetooth(BluetoothAdapter btAdapter, Context context) {
+        this.context = context;
+        this.btAdapter = btAdapter;
+    }
+
     public void on() {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
