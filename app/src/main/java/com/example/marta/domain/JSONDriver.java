@@ -56,6 +56,15 @@ public class JSONDriver {
          addAll();
     }
 
+    /**
+     *
+     * @param student
+     *      Made to write to the json file a little easier.
+     * @param writer
+     *      JsonWriter to write the object to the file.
+     * @throws IOException
+     *      Passed to calling class.
+     */
     public void addStudent(Student student, JsonWriter writer) throws IOException {
         writer.beginObject();
         writer.name("class").value("Student");
@@ -66,6 +75,15 @@ public class JSONDriver {
         writer.endObject();
     }
 
+    /**
+     *
+     * @param teacher
+     *      Made to write to the json file a little easier.
+     * @param writer
+     *      JsonWriter to write the object to the file.
+     * @throws IOException
+     *       Passed to the calling class.
+     */
     public void addTeacher(Teacher teacher, JsonWriter writer) throws IOException {
         writer.beginObject();
         writer.name("class").value("Teacher");
@@ -77,32 +95,27 @@ public class JSONDriver {
         writer.endObject();
     }
 
+    /**
+     *
+     * @param newStudent
+     *      Push the new student onto the file.
+     * @throws IOException
+     */
     public void addOneStudent(Student newStudent) throws IOException {
         students.add(newStudent);
-        JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream));
-        writer.beginArray();
-        for (Teacher teacher : teachers) {
-            addTeacher(teacher, writer);
-        }
-        for (Student student : students) {
-            addStudent(student, writer);
-        }
-        writer.endArray();
+        addAll();
     }
 
     public void addOneTeacher(Teacher newTeacher) throws IOException {
         teachers.add(newTeacher);
-        JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
-        writer.beginArray();
-        for (Teacher teacher : teachers) {
-            addTeacher(teacher, writer);
-        }
-        for (Student student : students) {
-            addStudent(student, writer);
-        }
-        writer.endArray();
+        addAll();
     }
 
+    /**
+     * Added to rewrite file whenever intialized.
+     *
+     * @throws IOException
+     */
     public void addAll() throws IOException {
         // FileWriter writer = new FileWriter(path);
         JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
@@ -114,12 +127,13 @@ public class JSONDriver {
             addStudent(student, writer);
         }
         writer.endArray();
-        writer.close();
+        writer.flush();
     }
 
     /**
      * Creates the json reader and passes through to getPeople(JsonReader)
      * @throws IOException
+     *         Handle in the other classes
      */
     public void getPeople() throws IOException {
         JsonReader json = new JsonReader(new InputStreamReader(istream, "UTF-8"));
