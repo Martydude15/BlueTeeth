@@ -67,6 +67,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
     }
 
     public void discover(BluetoothAdapter btAdapter) {
+
         if (btAdapter.isDiscovering()) {
             btAdapter.cancelDiscovery();
             checkBtPermissions();
