@@ -1,11 +1,14 @@
 package com.example.marta.blueteeth;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +17,18 @@ import android.widget.Toast;
 public class TeacherConnectScreen extends AppCompatActivity {
 
     private final static int REQUEST_ENABLE_BT = 1;
-    BroadcastReceiver broadcastReceiver;
+
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if(BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                Toast.makeText(TeacherConnectScreen.this, "Showing Unpaired Device: " +
+                        device.getName() + "\t" + device.getAddress(), Toast.LENGTH_LONG).show();
+            }
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +69,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
     public void discover(BluetoothAdapter btAdapter) {
         if (btAdapter.isDiscovering()) {
             btAdapter.cancelDiscovery();
+            checkBtPermissions();
             btAdapter.startDiscovery();
             IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(broadcastReceiver, discoverDevice);
@@ -63,16 +78,16 @@ public class TeacherConnectScreen extends AppCompatActivity {
             IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(broadcastReceiver, discoverDevice);
         }
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-                if(BluetoothDevice.ACTION_FOUND.equals(action)) {
-                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    Toast.makeText(TeacherConnectScreen.this, "Showing Unpaired Device: " +
-                            device.getName() + "\t" + device.getAddress(), Toast.LENGTH_LONG).show();
-                }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void checkBtPermissions() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+            permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+            if (permissionCheck != 0) {
+                this.requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1001);
             }
-        };
+        }
     }
 }
