@@ -128,7 +128,7 @@ public class JSONDriver {
             addStudent(student, writer);
         }
         writer.endArray();
-        writer.flush();
+        writer.close();
     }
 
     /**
