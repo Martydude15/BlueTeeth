@@ -50,9 +50,11 @@ public class StudentConnectScreen extends AppCompatActivity {
     }
 
     public void discoverable(String name, BluetoothAdapter btAdapter) {
-        btAdapter.setName(name);
-        Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
-        discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-        startActivity(discover);
+        if (btAdapter != null) {
+            btAdapter.setName(name);
+            Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            startActivity(discover);
+        }
     }
 }
