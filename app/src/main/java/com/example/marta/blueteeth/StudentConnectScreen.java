@@ -51,6 +51,9 @@ public class StudentConnectScreen extends AppCompatActivity {
             Intent discover = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
             startActivity(discover);
+            Toast.makeText(this, "Device is discoverable.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this, "Had an error here.", Toast.LENGTH_LONG).show();
         }
     }
 }

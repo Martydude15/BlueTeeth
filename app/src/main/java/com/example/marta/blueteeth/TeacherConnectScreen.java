@@ -71,10 +71,12 @@ public class TeacherConnectScreen extends AppCompatActivity {
             btAdapter.cancelDiscovery();
             checkBtPermissions();
             btAdapter.startDiscovery();
+            Toast.makeText(this,"Starting discovery.", Toast.LENGTH_LONG).show();
             IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(broadcastReceiver, discoverDevice);
         } else {
             btAdapter.startDiscovery();
+            Toast.makeText(this,"Starting discovery.", Toast.LENGTH_LONG).show();
             IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(broadcastReceiver, discoverDevice);
         }
