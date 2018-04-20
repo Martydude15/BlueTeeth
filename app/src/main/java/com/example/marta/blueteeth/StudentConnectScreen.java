@@ -4,11 +4,8 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
-import com.example.marta.domain.Bluetooth;
-import com.example.marta.domain.Student;
+import android.widget.Toast;
 
 public class StudentConnectScreen extends AppCompatActivity {
 
@@ -38,21 +35,20 @@ public class StudentConnectScreen extends AppCompatActivity {
             if (!btAdapter.isEnabled())
             {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                Log.d("Blueteeth", "Turning bluetooth on.");
                 startActivity(enableBtIntent);
             } else
             {
-                new DialogBox("Bluetooth is already on.", this);
+                Toast.makeText(this, "Bluetooth is already on.", Toast.LENGTH_LONG).show();
             }
         } else {
-            new DialogBox("Bluetooth is not available on this device.", this);
+            Toast.makeText(this, "Bluetooth is not available on this device.", Toast.LENGTH_LONG).show();
         }
     }
 
     public void discoverable(String name, BluetoothAdapter btAdapter) {
         if (btAdapter != null) {
             btAdapter.setName(name);
-            Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
+            Intent discover = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
             startActivity(discover);
         }

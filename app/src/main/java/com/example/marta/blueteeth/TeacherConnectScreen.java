@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -43,7 +42,6 @@ public class TeacherConnectScreen extends AppCompatActivity {
             if (!btAdapter.isEnabled())
             {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                Log.d("Blueteeth", "Turning bluetooth on.");
                 startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             } else
             {
@@ -71,7 +69,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
                 String action = intent.getAction();
                 if(BluetoothDevice.ACTION_FOUND.equals(action)) {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    Toast.makeText(context, "Showing Unpaired Device: " +
+                    Toast.makeText(TeacherConnectScreen.this, "Showing Unpaired Device: " +
                             device.getName() + "\t" + device.getAddress(), Toast.LENGTH_LONG).show();
                 }
             }
