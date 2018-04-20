@@ -28,6 +28,8 @@ import java.util.List;
  */
 public class StudentAddFragment extends Fragment {
 
+    ArrayAdapter<Student> listViewAdapter;
+
     public StudentAddFragment() {
         // Required empty public constructor
     }
@@ -53,12 +55,16 @@ public class StudentAddFragment extends Fragment {
         List<Student> students = jsonDriver.getStudents();
         ListView listView = view.findViewById(R.id.listView1);
 
-        ArrayAdapter<Student> listViewAdapter = new ArrayAdapter<>(
+        listViewAdapter = new ArrayAdapter<>(
                 getContext(),
                 android.R.layout.simple_list_item_1,
                 students
         );
         listView.setAdapter(listViewAdapter);
+    }
+
+    public void addStudents(Student student) {
+        listViewAdapter.add(student);
     }
 
     @Override
@@ -128,7 +134,7 @@ public class StudentAddFragment extends Fragment {
                                             try {
                                                 JSONDriver jsonDriver = new JSONDriver("login.json", getContext());
                                                 jsonDriver.addOneStudent(new Student(fName, mName, lName, jNumber));
-                                                setUp(getContext(), view);
+                                                addStudents(new Student(fName, mName, lName, jNumber));
                                             } catch (Exception e) {
                                                 new DialogBox(e.toString(), getContext());
                                                 e.printStackTrace();
