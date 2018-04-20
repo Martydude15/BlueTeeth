@@ -134,6 +134,7 @@ public class StudentAddFragment extends Fragment {
                                                 JSONDriver jsonDriver = new JSONDriver("login.json", getContext());
                                                 jsonDriver.addOneStudent(new Student(fName, mName, lName, jNumber));
                                                 addStudent(new Student(fName, mName, lName, jNumber));
+                                                System.out.println(jsonDriver.getStudents());
                                             } catch (Exception e) {
                                                 new DialogBox(e.toString(), getContext());
                                                 e.printStackTrace();
