@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.marta.domain.*;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,7 +27,7 @@ import java.util.List;
  */
 public class StudentAddFragment extends Fragment {
 
-    ArrayAdapter<Student> listViewAdapter;
+    ArrayAdapter<Student> studentArrayAdapter;
 
     public StudentAddFragment() {
         // Required empty public constructor
@@ -55,16 +54,16 @@ public class StudentAddFragment extends Fragment {
         List<Student> students = jsonDriver.getStudents();
         ListView listView = view.findViewById(R.id.listView1);
 
-        listViewAdapter = new ArrayAdapter<>(
+        studentArrayAdapter = new ArrayAdapter<>(
                 getContext(),
                 android.R.layout.simple_list_item_1,
                 students
         );
-        listView.setAdapter(listViewAdapter);
+        listView.setAdapter(studentArrayAdapter);
     }
 
-    public void addStudents(Student student) {
-        listViewAdapter.add(student);
+    public void addStudent(Student student) {
+        studentArrayAdapter.add(student);
     }
 
     @Override
@@ -134,7 +133,7 @@ public class StudentAddFragment extends Fragment {
                                             try {
                                                 JSONDriver jsonDriver = new JSONDriver("login.json", getContext());
                                                 jsonDriver.addOneStudent(new Student(fName, mName, lName, jNumber));
-                                                addStudents(new Student(fName, mName, lName, jNumber));
+                                                addStudent(new Student(fName, mName, lName, jNumber));
                                             } catch (Exception e) {
                                                 new DialogBox(e.toString(), getContext());
                                                 e.printStackTrace();
@@ -201,7 +200,13 @@ public class StudentAddFragment extends Fragment {
                                             String jNumber2 = mJnumber2.getText().toString();
                                             String password = mPassword.getText().toString();
 
-
+                                            try {
+                                                JSONDriver jsonDriver = new JSONDriver("login.json", getContext());
+                                                jsonDriver.addOneTeacher(new Teacher(fName2, mName2, lName2, jNumber2, password));
+                                            } catch (Exception e) {
+                                                new DialogBox(e.toString(), getContext());
+                                                e.printStackTrace();
+                                            }
 
                                             Toast.makeText(getActivity(), "Add complete.", Toast.LENGTH_SHORT).show();
                                             dialog.dismiss();

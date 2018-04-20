@@ -14,7 +14,7 @@ public class Teacher extends Person implements Parcelable{
 
     private String passCode;
 
-    Teacher(String firstName, String middleName, String lastName, String jagNumber, String passCode) {
+    public Teacher(String firstName, String middleName, String lastName, String jagNumber, String passCode) {
         super(firstName, middleName, lastName, jagNumber);
         this.passCode = passCode;
         /**
