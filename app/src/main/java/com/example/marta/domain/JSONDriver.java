@@ -103,10 +103,12 @@ public class JSONDriver {
      */
     public void addOneStudent(Student newStudent) throws IOException {
         students.add(newStudent);
+        addAll();
     }
 
     public void addOneTeacher(Teacher newTeacher) throws IOException {
         teachers.add(newTeacher);
+        addAll();
     }
 
     /**
