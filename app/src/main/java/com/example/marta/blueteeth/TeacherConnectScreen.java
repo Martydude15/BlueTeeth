@@ -12,8 +12,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import static android.bluetooth.BluetoothDevice.ACTION_FOUND;
-
 public class TeacherConnectScreen extends AppCompatActivity {
 
     private final static int REQUEST_ENABLE_BT = 1;
@@ -60,18 +58,18 @@ public class TeacherConnectScreen extends AppCompatActivity {
         if (btAdapter.isDiscovering()) {
             btAdapter.cancelDiscovery();
             btAdapter.startDiscovery();
-            IntentFilter discoverDevice = new IntentFilter(ACTION_FOUND);
+            IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(broadcastReceiver, discoverDevice);
         } else {
             btAdapter.startDiscovery();
-            IntentFilter discoverDevice = new IntentFilter(ACTION_FOUND);
+            IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(broadcastReceiver, discoverDevice);
         }
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
-                if(ACTION_FOUND.equals(action)) {
+                if(BluetoothDevice.ACTION_FOUND.equals(action)) {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                     Toast.makeText(context, "Showing Unpaired Device: " +
                             device.getName() + "\t" + device.getAddress(), Toast.LENGTH_LONG).show();
