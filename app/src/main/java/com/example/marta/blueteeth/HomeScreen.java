@@ -56,14 +56,10 @@ public class HomeScreen extends AppCompatActivity {
      * @throws IOException
      */
     public Intent verifyLogin(String jagNumber) throws IOException {
-        JSONDriver json;
+        JSONDriver json2 = new JSONDriver(getAssets().open("login.json"), this);
         // Create new JSONDriver to handle the json file.
-        if (new File(this.getFilesDir() + "/" + "login.json").exists())
-        {
-            json = new JSONDriver("login.json", this);
-        } else {
-            json = new JSONDriver(getAssets().open("login.json"), this);
-        }
+        JSONDriver json = new JSONDriver("login.json", this);
+
         // Processes the json file and puts into corresponding lists.
         // This happens in the background json.getPeople();
         // Checks if the jagNumber returned from the textBox is a teacher
