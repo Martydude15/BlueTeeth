@@ -17,6 +17,7 @@ public class JSONDriver {
     private InputStream istream;
     private OutputStream ostream;
     private Context context;
+    private String filepath;
     private List<Teacher> teachers;
     private List<Student> students;
 
@@ -29,8 +30,7 @@ public class JSONDriver {
             this.istream = context.openFileInput(filepath);
             getPeople();
         }
-        this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
-        addAll();
+        this.filepath = filepath;
     }
 
     /**
@@ -103,12 +103,10 @@ public class JSONDriver {
      */
     public void addOneStudent(Student newStudent) throws IOException {
         students.add(newStudent);
-        addAll();
     }
 
     public void addOneTeacher(Teacher newTeacher) throws IOException {
         teachers.add(newTeacher);
-        addAll();
     }
 
     /**
@@ -117,6 +115,9 @@ public class JSONDriver {
      * @throws IOException
      */
     public void addAll() throws IOException {
+        if (ostream == null) {
+            this.ostream = context.openFileOutput(filepath, Context.MODE_PRIVATE);
+        }
         // FileWriter writer = new FileWriter(path);
         JsonWriter writer = new JsonWriter(new OutputStreamWriter(ostream, "UTF-8"));
         writer.beginArray();
