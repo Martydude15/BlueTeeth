@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.util.Log;
 
 import com.example.marta.blueteeth.DialogBox;
@@ -29,7 +28,7 @@ public class Bluetooth  {
         this.btAdapter = btAdapter;
     }
 
-    public void on() {
+    private void on() {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
             {

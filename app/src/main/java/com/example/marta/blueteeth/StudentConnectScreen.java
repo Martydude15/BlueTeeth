@@ -12,15 +12,13 @@ import com.example.marta.domain.Student;
 
 public class StudentConnectScreen extends AppCompatActivity {
 
-    public BluetoothAdapter btAdapter;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_connect_screen);
-        Bluetooth bluetooth = new Bluetooth(BluetoothAdapter.getDefaultAdapter(), this);
-        bluetooth.on();
-        bluetooth.discoverable("TEST");
+        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
+        on(btAdapter);
+        discoverable("TEST", btAdapter);
     }
 
     /**
@@ -35,5 +33,26 @@ public class StudentConnectScreen extends AppCompatActivity {
         startActivity(switchPage);
     }
 
+    public void on(BluetoothAdapter btAdapter) {
+        if (btAdapter != null) {
+            if (!btAdapter.isEnabled())
+            {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                Log.d("Blueteeth", "Turning bluetooth on.");
+                startActivity(enableBtIntent);
+            } else
+            {
+                new DialogBox("Bluetooth is already on.", this);
+            }
+        } else {
+            new DialogBox("Bluetooth is not available on this device.", this);
+        }
+    }
 
+    public void discoverable(String name, BluetoothAdapter btAdapter) {
+        btAdapter.setName(name);
+        Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
+        discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+        startActivity(discover);
+    }
 }
