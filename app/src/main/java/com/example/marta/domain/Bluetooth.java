@@ -18,10 +18,11 @@ public class Bluetooth  {
     private BluetoothAdapter btAdapter;
     public BroadcastReceiver broadcastReceiver;
 
-    public Bluetooth(BluetoothAdapter btAdapter, Context context) {
+    public Bluetooth(BluetoothAdapter btAdapter, Context context, BroadcastReceiver broadcastReceiver) {
         this.context = context;
         this.btAdapter = btAdapter;
         context.registerReceiver(broadcastReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
+        this.broadcastReceiver = broadcastReceiver;
     }
 
     public void on() {
@@ -53,7 +54,13 @@ public class Bluetooth  {
     }
 
     public void discover() {
-        btAdapter.startDiscovery();
+        if (btAdapter.isDiscovering()) {
+            new DialogBox("Already discovering.", context);
+            btAdapter.cancelDiscovery();
+        } else {
+            new DialogBox("Starting discovery.", context);
+            btAdapter.startDiscovery();
+        }
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
