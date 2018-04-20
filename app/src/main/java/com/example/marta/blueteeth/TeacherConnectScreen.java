@@ -10,7 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import com.example.marta.domain.Bluetooth;
+import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
+import static android.bluetooth.BluetoothDevice.ACTION_FOUND;
 
 public class TeacherConnectScreen extends AppCompatActivity {
 
@@ -21,7 +24,6 @@ public class TeacherConnectScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
-        registerReceiver(broadcastReceiver, new IntentFilter(BluetoothDevice.ACTION_FOUND));
         BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
         on(btAdapter);
         discover(btAdapter);
@@ -56,22 +58,26 @@ public class TeacherConnectScreen extends AppCompatActivity {
     }
 
     public void discover(BluetoothAdapter btAdapter) {
+        if (btAdapter.isDiscovering()) {
+            btAdapter.cancelDiscovery();
+            btAdapter.startDiscovery();
+            IntentFilter discoverDevice = new IntentFilter(ACTION_FOUND);
+            registerReceiver(broadcastReceiver, discoverDevice);
+        } else {
+            btAdapter.startDiscovery();
+            IntentFilter discoverDevice = new IntentFilter(ACTION_FOUND);
+            registerReceiver(broadcastReceiver, discoverDevice);
+        }
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String action = intent.getAction();
-                if(BluetoothDevice.ACTION_FOUND.equals(action)) {
+                if(ACTION_FOUND.equals(action)) {
                     BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    new DialogBox(device.getName() + "\t" + device.getAddress(), context);
+                    Toast.makeText(context, "Showing Unpaired Device: " +
+                            device.getName() + "\t" + device.getAddress(), Toast.LENGTH_LONG).show();
                 }
             }
         };
-        if (btAdapter.isDiscovering()) {
-            new DialogBox("Already discovering.", this);
-            btAdapter.cancelDiscovery();
-        } else {
-            new DialogBox("Starting discovery.", this);
-            btAdapter.startDiscovery();
-        }
     }
 }
