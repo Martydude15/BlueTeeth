@@ -32,7 +32,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
                 String address = device.getAddress();
                 if (name != null) {
                     Toast.makeText(TeacherConnectScreen.this, "Showing Unpaired Device: " +
-                            device.getName() + " " + device.getAddress(), Toast.LENGTH_LONG).show();
+                            name + " " + address, Toast.LENGTH_LONG).show();
                 }
             }
         }
