@@ -1,7 +1,10 @@
 package com.example.marta.blueteeth;
 
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +12,20 @@ import android.widget.Toast;
 
 public class StudentConnectScreen extends AppCompatActivity {
 
+    private BluetoothAdapter btAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_connect_screen);
-        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-        on(btAdapter);
-        discoverable("TEST", btAdapter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            BluetoothManager btManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+            btAdapter = btManager.getAdapter();
+        } else {
+            btAdapter = BluetoothAdapter.getDefaultAdapter();
+        }
+        on();
+        discoverable("TEST");
     }
 
     /**
@@ -30,7 +40,7 @@ public class StudentConnectScreen extends AppCompatActivity {
         startActivity(switchPage);
     }
 
-    public void on(BluetoothAdapter btAdapter) {
+    public void on() {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
             {
@@ -45,7 +55,7 @@ public class StudentConnectScreen extends AppCompatActivity {
         }
     }
 
-    public void discoverable(String name, BluetoothAdapter btAdapter) {
+    public void discoverable(String name) {
         if (btAdapter != null) {
             btAdapter.setName(name);
             Intent discover = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);

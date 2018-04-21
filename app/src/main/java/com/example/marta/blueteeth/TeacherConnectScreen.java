@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -14,9 +15,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.marta.domain.Bluetooth;
+
 public class TeacherConnectScreen extends AppCompatActivity {
 
     private final static int REQUEST_ENABLE_BT = 1;
+    private BluetoothAdapter btAdapter;
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -38,9 +42,14 @@ public class TeacherConnectScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_connect_screen);
-        BluetoothAdapter btAdapter = BluetoothAdapter.getDefaultAdapter();
-        on(btAdapter);
-        discover(btAdapter);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            BluetoothManager btManager = (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+            btAdapter = btManager.getAdapter();
+        } else {
+            btAdapter = BluetoothAdapter.getDefaultAdapter();
+        }
+        on();
+        discover();
     }
 
     /**
@@ -55,7 +64,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
         startActivity(switchPage);
     }
 
-    public void on(BluetoothAdapter btAdapter) {
+    public void on() {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
             {
@@ -70,7 +79,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
         }
     }
 
-    public void discover(BluetoothAdapter btAdapter) {
+    public void discover() {
         if (btAdapter.isDiscovering()) {
             btAdapter.cancelDiscovery();
             checkBtPermissions();
@@ -79,6 +88,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
             IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             registerReceiver(broadcastReceiver, discoverDevice);
         } else {
+            checkBtPermissions();
             btAdapter.startDiscovery();
             Toast.makeText(this,"Starting discovery.", Toast.LENGTH_LONG).show();
             IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
