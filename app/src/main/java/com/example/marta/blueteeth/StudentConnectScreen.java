@@ -46,7 +46,6 @@ public class StudentConnectScreen extends AppCompatActivity {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
             {
-                checkBtPermissions();
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivity(enableBtIntent);
             } else
@@ -60,6 +59,7 @@ public class StudentConnectScreen extends AppCompatActivity {
 
     public void discoverable(String name) {
         if (btAdapter != null) {
+            checkBtPermissions();
             btAdapter.setName(name);
             Intent discover = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
             discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
