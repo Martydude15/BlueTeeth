@@ -52,6 +52,12 @@ public class TeacherConnectScreen extends AppCompatActivity {
         discover();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(broadcastReceiver);
+    }
+
     /**
      *
      * @param view
