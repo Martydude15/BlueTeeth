@@ -1,5 +1,7 @@
 package com.example.marta.blueteeth;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
@@ -44,6 +46,7 @@ public class StudentConnectScreen extends AppCompatActivity {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
             {
+                checkBtPermissions();
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
                 startActivity(enableBtIntent);
             } else
@@ -64,6 +67,17 @@ public class StudentConnectScreen extends AppCompatActivity {
             Toast.makeText(this, "Device is discoverable.", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "Had an error here.", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void checkBtPermissions() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+            permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+            if (permissionCheck != 0) {
+                this.requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1001);
+            }
         }
     }
 }
