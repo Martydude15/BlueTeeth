@@ -32,9 +32,6 @@ public class TeacherConnectScreen extends AppCompatActivity {
                     if (device.getName().equals("TEST")) {
                         Toast.makeText(TeacherConnectScreen.this,"No device to find.", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(TeacherConnectScreen.this, "Showing Unpaired Device: " +
-                            device.getName() + " " + device.getAddress(), Toast.LENGTH_LONG).show();
                 }
             }
         }
