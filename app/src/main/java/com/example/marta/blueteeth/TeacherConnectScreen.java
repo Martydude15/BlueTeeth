@@ -29,11 +29,8 @@ public class TeacherConnectScreen extends AppCompatActivity {
             if(BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 if (device != null) {
-                    String name = device.getName();
-                    if (name.equals("TEST")) {
-                        Toast.makeText(TeacherConnectScreen.this, "Showing Unpaired Device: " +
-                                name + " " + device.getAddress(), Toast.LENGTH_LONG).show();
-                    }
+                    Toast.makeText(TeacherConnectScreen.this, "Showing Unpaired Device: " +
+                            device.getName() + " " + device.getAddress(), Toast.LENGTH_LONG).show();
                 }
             }
         }
