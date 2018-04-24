@@ -22,8 +22,6 @@ public class TeacherConnectScreen extends AppCompatActivity {
             continue;
         }
         findViewById(R.id.next_btn).setVisibility(View.VISIBLE);
-        bt.unregister();
-        bt.off();
     }
 
     /**
@@ -32,6 +30,8 @@ public class TeacherConnectScreen extends AppCompatActivity {
      *      Gives intent to switch pages
      */
     public void testMethod(View view) {
+        bt.unregister();
+        bt.off();
         // Sets intent switchPage to go from TeacherConnectScreen activity to TeacherPhoto activity
         Intent switchPage = new Intent(TeacherConnectScreen.this, MainActivity.class);
         // Activates page switch
