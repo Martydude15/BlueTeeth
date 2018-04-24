@@ -11,12 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
-
-import com.example.marta.blueteeth.DialogBox;
-import com.example.marta.blueteeth.TeacherConnectScreen;
 
 import java.util.UUID;
 
@@ -37,7 +32,7 @@ public class Bluetooth  {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 String name = device.getName();
                 String address = device.getAddress();
-                if (name != null) {
+                if (name != null && name == "TEST") {
                     Toast.makeText(context, "Showing Unpaired Device: " +
                             name + " " + address, Toast.LENGTH_LONG).show();
                 }
@@ -107,7 +102,7 @@ public class Bluetooth  {
     }
 
     @TargetApi(Build.VERSION_CODES.M)
-    public void checkBtPermissions() {
+    private void checkBtPermissions() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
             int permissionCheck = this.context.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
             permissionCheck += this.context.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
