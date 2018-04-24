@@ -18,7 +18,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
         bt = new Bluetooth(this);
         bt.on();
         bt.discover();
-        try {Thread.sleep(1200);}
+        try {Thread.sleep(1300);}
         catch (Exception e) {e.printStackTrace();}
         bt.showDevices();
     }
