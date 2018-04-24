@@ -3,9 +3,13 @@ package com.example.marta.blueteeth;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,9 +49,28 @@ public class HomeFragment extends Fragment {
 
         //Bluetooth button function
         view.findViewById(R.id.btButton2).setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "This will start the Bluetooth function.", Toast.LENGTH_SHORT).show();
+                AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                View mView = getLayoutInflater().inflate(R.layout.dialog_attendee_list_view, null);
+                ListView mListView = mView.findViewById(R.id.listView2);
+                Button mClose = mView.findViewById(R.id.closeBtn);
+                //Makes it to where a button has to be pressed to close the dialog box
+                mBuilder.setCancelable(false);
+
+                //Show the dialog box
+                mBuilder.setView(mView);
+                final AlertDialog dialog = mBuilder.create();
+                dialog.show();
+
+                mClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                       dialog.dismiss();
+                    }
+                });
+
             }
         });
     }

@@ -32,13 +32,7 @@ public class AttendeeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        view.findViewById(R.id.button4).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Toast.makeText(getActivity(), "When life gives you lemons...", Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
 }

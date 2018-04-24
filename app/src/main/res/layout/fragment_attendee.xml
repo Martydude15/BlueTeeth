@@ -8,25 +8,24 @@
 
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/attendeeTitle2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Attendee Fragment"
+        android:text="Attendees"
         android:layout_gravity="center_horizontal"
         android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/southBlue"
         />
 
-    <Button
-        android:id="@+id/button4"
-        android:layout_width="100dp"
-        android:layout_height="22dp"
-        android:layout_gravity="center"
-        android:background="@color/southBlue"
-        android:gravity="start"
-        android:text="Press Me :)"
-        android:textAlignment="center"
-        android:textColor="@color/southRed"
-        android:textStyle="bold" />
+    <ListView
+        android:id="@+id/listView3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
+        />
+
+
 
 
 </FrameLayout>

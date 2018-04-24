@@ -6,11 +6,21 @@
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/nonAttendeeTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NonAttendee Fragment"
+        android:text="NonAttendees"
         android:textSize="30sp"
+        android:textColor="@color/southBlue"
+        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
+        />
+
+    <ListView
+        android:id="@+id/listView4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp"
         />
 
 </FrameLayout>
