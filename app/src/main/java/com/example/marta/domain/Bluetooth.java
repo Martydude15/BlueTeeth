@@ -4,6 +4,7 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -13,6 +14,8 @@ import android.content.IntentFilter;
 import android.os.Build;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Bluetooth  {
@@ -23,6 +26,7 @@ public class Bluetooth  {
 
     private final static int REQUEST_ENABLE_BT = 1;
     private BluetoothAdapter btAdapter;
+    private List<BluetoothDevice> devices = new ArrayList<>();
 
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
@@ -33,8 +37,7 @@ public class Bluetooth  {
                 String name = device.getName();
                 String address = device.getAddress();
                 if (name != null) {
-                    Toast.makeText(context, "Showing Unpaired Device: " +
-                            name + " " + address, Toast.LENGTH_LONG).show();
+                    devices.add(device);
                 }
             }
         }
@@ -98,6 +101,17 @@ public class Bluetooth  {
             Toast.makeText(this.context,"Starting discovery.", Toast.LENGTH_LONG).show();
             IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
             this.context.registerReceiver(broadcastReceiver, discoverDevice);
+        }
+    }
+
+    public void showDevices() {
+        for (BluetoothDevice device: devices) {
+            String name = device.getName();
+            String address = device.getAddress();
+            if (name.equals("TEST")) {
+                Toast.makeText(context, "Showing Unpaired Device: " +
+                        name + " " + address, Toast.LENGTH_LONG).show();
+            }
         }
     }
 

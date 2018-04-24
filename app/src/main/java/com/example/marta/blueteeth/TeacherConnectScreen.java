@@ -18,6 +18,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
         bt = new Bluetooth(this);
         bt.on();
         bt.discover();
+        bt.showDevices();
     }
 
     /**
