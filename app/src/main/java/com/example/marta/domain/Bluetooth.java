@@ -1,78 +1,119 @@
 package com.example.marta.domain;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.Build;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.example.marta.blueteeth.DialogBox;
+import com.example.marta.blueteeth.TeacherConnectScreen;
+
 import java.util.UUID;
 
 public class Bluetooth  {
 
-    final UUID uuid = UUID.fromString("67d338c8-42a1-11e8-842f-0ed5f89f718b");
+//    final UUID uuid = UUID.fromString("67d338c8-42a1-11e8-842f-0ed5f89f718b");
     private Context context;
+    private Activity activity;
+
+    private final static int REQUEST_ENABLE_BT = 1;
     private BluetoothAdapter btAdapter;
-    public BroadcastReceiver broadcastReceiver;
 
-    public Bluetooth(BluetoothAdapter btAdapter, Context context, BroadcastReceiver broadcastReceiver) {
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context1, Intent intent) {
+            String action = intent.getAction();
+            if(BluetoothDevice.ACTION_FOUND.equals(action)) {
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                String name = device.getName();
+                String address = device.getAddress();
+                if (name != null) {
+                    Toast.makeText(context, "Showing Unpaired Device: " +
+                            name + " " + address, Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    };
+
+    public Bluetooth(Context context) {
         this.context = context;
-        this.btAdapter = btAdapter;
-        this.broadcastReceiver = broadcastReceiver;
+        this.activity = (Activity) context;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            BluetoothManager btManager = (BluetoothManager) context.getSystemService(Context.BLUETOOTH_SERVICE);
+            this.btAdapter = btManager.getAdapter();
+        } else {
+            this.btAdapter = BluetoothAdapter.getDefaultAdapter();
+        }
     }
 
-    public Bluetooth(BluetoothAdapter btAdapter, Context context) {
-        this.context = context;
-        this.btAdapter = btAdapter;
-    }
-
-    private void on() {
+    public void on() {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
             {
                 Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                Log.d("Blueteeth", "Turning bluetooth on.");
-                context.startActivity(enableBtIntent);
+                this.activity.startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
             } else
             {
-                new DialogBox("Bluetooth is already on.", context);
+                Toast.makeText(this.context,"Bluetooth is already on.", Toast.LENGTH_LONG).show();
             }
         } else {
-            new DialogBox("Bluetooth is not available on this device.", context);
+            Toast.makeText(this.context,"Bluetooth is not available on this device.", Toast.LENGTH_LONG).show();
         }
     }
 
     public void off() {
-        btAdapter.disable();
-        Log.d("Blueteeth", "Turning bluetooth off.");
+        this.btAdapter.disable();
     }
 
     public void discoverable(String name) {
-        btAdapter.setName(name);
-        Intent discover = new Intent(btAdapter.ACTION_REQUEST_DISCOVERABLE);
-        discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-        context.startActivity(discover);
+        if (btAdapter != null) {
+            checkBtPermissions();
+            btAdapter.setName(name);
+            Intent discover = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+            discover.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
+            this.activity.startActivity(discover);
+            Toast.makeText(this.context, "Device is discoverable.", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(this.context, "Had an error here.", Toast.LENGTH_LONG).show();
+        }
     }
 
+
     public void discover() {
-        broadcastReceiver = new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                String action = intent.getAction();
-                if(BluetoothDevice.ACTION_FOUND.equals(action)) {
-                    BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                    new DialogBox(device.getName() + "\t" + device.getAddress(), context);
-                }
-            }
-        };
         if (btAdapter.isDiscovering()) {
-            new DialogBox("Already discovering.", context);
             btAdapter.cancelDiscovery();
-        } else {
-            new DialogBox("Starting discovery.", context);
+            checkBtPermissions();
             btAdapter.startDiscovery();
+            Toast.makeText(this.context,"Starting discovery.", Toast.LENGTH_LONG).show();
+            IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+            this.context.registerReceiver(broadcastReceiver, discoverDevice);
+        } else {
+            checkBtPermissions();
+            btAdapter.startDiscovery();
+            Toast.makeText(this.context,"Starting discovery.", Toast.LENGTH_LONG).show();
+            IntentFilter discoverDevice = new IntentFilter(BluetoothDevice.ACTION_FOUND);
+            this.context.registerReceiver(broadcastReceiver, discoverDevice);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    public void checkBtPermissions() {
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            int permissionCheck = this.context.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+            permissionCheck += this.context.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+            if (permissionCheck != 0) {
+                this.activity.requestPermissions(new String[] {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}, 1001);
+            }
         }
     }
 
