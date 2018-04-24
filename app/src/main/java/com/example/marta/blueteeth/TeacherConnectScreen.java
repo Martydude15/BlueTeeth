@@ -1,11 +1,14 @@
 package com.example.marta.blueteeth;
 
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.marta.domain.Bluetooth;
+
+import java.util.concurrent.TimeUnit;
 
 public class TeacherConnectScreen extends AppCompatActivity {
 
@@ -18,9 +21,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
         bt = new Bluetooth(this);
         bt.on();
         bt.discover();
-        try {Thread.sleep(1300);}
-        catch (Exception e) {e.printStackTrace();}
-        bt.showDevices();
+        try {TimeUnit.SECONDS.sleep(13);} catch (InterruptedException ie) {ie.printStackTrace();}
         findViewById(R.id.next_btn).setVisibility(View.VISIBLE);
     }
 
@@ -32,6 +33,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
     public void testMethod(View view) {
         // Sets intent switchPage to go from TeacherConnectScreen activity to TeacherPhoto activity
         Intent switchPage = new Intent(TeacherConnectScreen.this, MainActivity.class);
+        switchPage.putExtra("bt", (Parcelable) bt);
         // Activates page switch
         startActivity(switchPage);
     }

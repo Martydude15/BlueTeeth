@@ -24,6 +24,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.marta.domain.Bluetooth;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -31,12 +33,13 @@ public class MainActivity extends AppCompatActivity
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
     boolean isOpen= false;
     
-    
+    Bluetooth bt = getIntent().getParcelableExtra("bt");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        bt.showDevices();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

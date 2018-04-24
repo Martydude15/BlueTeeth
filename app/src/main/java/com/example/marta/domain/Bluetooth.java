@@ -35,7 +35,6 @@ public class Bluetooth  {
             if(BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 String name = device.getName();
-                String address = device.getAddress();
                 if (name != null) {
                     devices.add(device);
                 }
