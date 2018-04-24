@@ -32,14 +32,11 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton fab, fab2, fab3;
     Animation fabOpen, fabClose, rotateForward, rotateBackward;
     boolean isOpen= false;
-    
-    Bluetooth bt = getIntent().getParcelableExtra("bt");
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bt.showDevices();
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
