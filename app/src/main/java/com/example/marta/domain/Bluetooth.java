@@ -35,8 +35,11 @@ public class Bluetooth  {
             if(BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 String name = device.getName();
+                String address = device.getAddress();
                 if (name != null) {
                     devices.add(device);
+                    Toast.makeText(context, "Showing Unpaired Device: " +
+                            name + " " + address, Toast.LENGTH_LONG).show();
                 }
             }
         }
@@ -121,15 +124,9 @@ public class Bluetooth  {
         }
     }
 
-    public void showDevices() {
-        for (BluetoothDevice device: devices) {
-            String name = device.getName();
-            String address = device.getAddress();
-            Toast.makeText(context, "Showing Unpaired Device: " +
-                        name + " " + address, Toast.LENGTH_LONG).show();
-        }
-    }
-
+    /**
+     * Turns the broadcast receiver off.
+     */
     public void unregister() {
         if (btAdapter.isDiscovering()) {
             btAdapter.cancelDiscovery();
@@ -137,6 +134,10 @@ public class Bluetooth  {
         this.activity.unregisterReceiver(broadcastReceiver);
     }
 
+    /**
+     * @return
+     *      Just returns whether the device is discovering or not.
+     */
     public Boolean discovering() {
         return btAdapter.isDiscovering();
     }

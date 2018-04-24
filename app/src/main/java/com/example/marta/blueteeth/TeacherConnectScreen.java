@@ -19,11 +19,11 @@ public class TeacherConnectScreen extends AppCompatActivity {
         bt.on();
         bt.discover();
         while(bt.discovering()) {
+            continue;
         }
         findViewById(R.id.next_btn).setVisibility(View.VISIBLE);
         bt.unregister();
         bt.off();
-        bt.showDevices();
     }
 
     /**
