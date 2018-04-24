@@ -106,6 +106,12 @@ public class JSONDriver {
         addAll();
     }
 
+    /**
+     *
+     * @param newTeacher
+     *      Pushes the new teacher onto the file.
+     * @throws IOException
+     */
     public void addOneTeacher(Teacher newTeacher) throws IOException {
         teachers.add(newTeacher);
         addAll();

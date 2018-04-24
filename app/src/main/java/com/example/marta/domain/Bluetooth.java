@@ -142,6 +142,9 @@ public class Bluetooth  {
         return btAdapter.isDiscovering();
     }
 
+    /**
+     *  Accesses location to allow discovery and allows the device to discover.
+     */
     @TargetApi(Build.VERSION_CODES.M)
     private void checkBtPermissions() {
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
