@@ -21,6 +21,7 @@ public class TeacherConnectScreen extends AppCompatActivity {
         try {Thread.sleep(1300);}
         catch (Exception e) {e.printStackTrace();}
         bt.showDevices();
+        findViewById(R.id.next_btn).setVisibility(View.VISIBLE);
     }
 
     /**
