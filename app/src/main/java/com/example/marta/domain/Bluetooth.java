@@ -108,10 +108,8 @@ public class Bluetooth  {
         for (BluetoothDevice device: devices) {
             String name = device.getName();
             String address = device.getAddress();
-            if (name.equals("TEST")) {
-                Toast.makeText(context, "Showing Unpaired Device: " +
+            Toast.makeText(context, "Showing Unpaired Device: " +
                         name + " " + address, Toast.LENGTH_LONG).show();
-            }
         }
     }
 
