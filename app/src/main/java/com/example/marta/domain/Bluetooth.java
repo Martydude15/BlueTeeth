@@ -4,7 +4,6 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
 import android.content.BroadcastReceiver;
@@ -16,11 +15,9 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Bluetooth  {
 
-//    final UUID uuid = UUID.fromString("67d338c8-42a1-11e8-842f-0ed5f89f718b");
     private Context context;
     private Activity activity;
 
@@ -28,6 +25,9 @@ public class Bluetooth  {
     private BluetoothAdapter btAdapter;
     private List<BluetoothDevice> devices = new ArrayList<>();
 
+    /**
+     *  Catches all of the devices that are currently discoverable.
+     */
     private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context1, Intent intent) {
@@ -110,6 +110,13 @@ public class Bluetooth  {
             Toast.makeText(context, "Showing Unpaired Device: " +
                         name + " " + address, Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void unregister() {
+        if (btAdapter.isDiscovering()) {
+            btAdapter.cancelDiscovery();
+        }
+        this.activity.unregisterReceiver(broadcastReceiver);
     }
 
     @TargetApi(Build.VERSION_CODES.M)

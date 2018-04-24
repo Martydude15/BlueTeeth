@@ -26,6 +26,8 @@ public class StudentConnectScreen extends AppCompatActivity {
      * Gives intent to switch pages
      */
     public void testMethod(View view) {
+        // Turns the bluetooth off
+        bt.off();
         // Sets intent switchPage to go from StudentConnectScreen to Student_Activity_Step1
         Intent switchPage = new Intent(StudentConnectScreen.this, Student_Activity_Step1.class);
         // Activates page switch

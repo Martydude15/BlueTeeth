@@ -23,12 +23,14 @@ public class TeacherConnectScreen extends AppCompatActivity {
         try {TimeUnit.SECONDS.sleep(13);} catch (InterruptedException ie) {ie.printStackTrace();}
         bt.showDevices();
         findViewById(R.id.next_btn).setVisibility(View.VISIBLE);
+        bt.unregister();
+        bt.off();
     }
 
     /**
      *
      * @param view
-     * Gives intent to switch pages
+     *      Gives intent to switch pages
      */
     public void testMethod(View view) {
         // Sets intent switchPage to go from TeacherConnectScreen activity to TeacherPhoto activity
