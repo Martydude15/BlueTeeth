@@ -7,8 +7,6 @@ import android.view.View;
 
 import com.example.marta.domain.Bluetooth;
 
-import java.util.concurrent.TimeUnit;
-
 public class TeacherConnectScreen extends AppCompatActivity {
 
     Bluetooth bt;
@@ -20,11 +18,12 @@ public class TeacherConnectScreen extends AppCompatActivity {
         bt = new Bluetooth(this);
         bt.on();
         bt.discover();
-        try {TimeUnit.SECONDS.sleep(13);} catch (InterruptedException ie) {ie.printStackTrace();}
-        bt.showDevices();
+        while(bt.discovering()) {
+        }
         findViewById(R.id.next_btn).setVisibility(View.VISIBLE);
         bt.unregister();
         bt.off();
+        bt.showDevices();
     }
 
     /**

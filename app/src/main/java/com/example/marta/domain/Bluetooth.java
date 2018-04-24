@@ -42,6 +42,11 @@ public class Bluetooth  {
         }
     };
 
+    /**
+     *
+     * @param context
+     *      Takes in the activity to apply the action to it.
+     */
     public Bluetooth(Context context) {
         this.context = context;
         this.activity = (Activity) context;
@@ -53,6 +58,9 @@ public class Bluetooth  {
         }
     }
 
+    /**
+     * Turns the bluetooth on
+     */
     public void on() {
         if (btAdapter != null) {
             if (!btAdapter.isEnabled())
@@ -68,10 +76,18 @@ public class Bluetooth  {
         }
     }
 
+    /**
+     * Turns the bluetooth off
+     */
     public void off() {
         this.btAdapter.disable();
     }
 
+    /**
+     * Makes the device discoverable
+     * @param name
+     *      Sets the name of the device to be discovered
+     */
     public void discoverable(String name) {
         if (btAdapter != null) {
             checkBtPermissions();
@@ -85,7 +101,9 @@ public class Bluetooth  {
         }
     }
 
-
+    /**
+     * Makes the device discover all discoverable bluetooth devices in range.
+     */
     public void discover() {
         if (btAdapter.isDiscovering()) {
             btAdapter.cancelDiscovery();
@@ -117,6 +135,10 @@ public class Bluetooth  {
             btAdapter.cancelDiscovery();
         }
         this.activity.unregisterReceiver(broadcastReceiver);
+    }
+
+    public Boolean discovering() {
+        return btAdapter.isDiscovering();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
