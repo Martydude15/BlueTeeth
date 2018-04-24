@@ -32,7 +32,7 @@ public class Bluetooth  {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 String name = device.getName();
                 String address = device.getAddress();
-                if (name != null && name == "TEST") {
+                if (name != null) {
                     Toast.makeText(context, "Showing Unpaired Device: " +
                             name + " " + address, Toast.LENGTH_LONG).show();
                 }
