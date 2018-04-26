@@ -118,7 +118,7 @@ public class ListFragment extends Fragment {
                                     mOk3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            //if a button is not checked
+                                            //if a button is checked
                                             if(mXml.isChecked() || mJson.isChecked())
                                             {
                                                 //display a toast message
