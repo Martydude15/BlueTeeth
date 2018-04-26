@@ -41,10 +41,12 @@ public class ListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //when the list button is clicked
         view.findViewById(R.id.listBtn).setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+            //inflate the layout
             final View mView = getLayoutInflater().inflate(R.layout.dialog_list_date, null);
             RadioGroup  mRgroup = mView.findViewById(R.id.rgroup3);
             final RadioButton mDay = mView.findViewById(R.id.rbDay);
@@ -55,19 +57,23 @@ public class ListFragment extends Fragment {
             //Makes it to where a button has to be pressed to close the dialog box
             mBuilder.setCancelable(false);
 
-            //show the dialog
             mBuilder.setView(mView);
             final AlertDialog dialog = mBuilder.create();
+            //show the dialog
             dialog.show();
 
+            //when the ok button is clicked
             mOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //if a button is checked
                     if(mDay.isChecked() || mWeek.isChecked() || mMonth.isChecked())
                     {
+                        //dismiss the current dialog
                         dialog.dismiss();
 
                         AlertDialog.Builder mBuilder2 = new AlertDialog.Builder(getActivity());
+                        //inflate the new dialog
                         final View mView2 = getLayoutInflater().inflate(R.layout.dialog_list_attendees, null);
                         RadioGroup mRgroup2 = mView2.findViewById(R.id.rgroup4);
                         final RadioButton mAttendees = mView2.findViewById(R.id.rbAttendees);
@@ -80,16 +86,20 @@ public class ListFragment extends Fragment {
 
                         mBuilder2.setView(mView2);
                         final AlertDialog dialog = mBuilder2.create();
+                        //show the enw dialog
                         dialog.show();
 
                         mOk2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                //if a button is checked
                                 if(mAttendees.isChecked() || mNonAttendees.isChecked() || mAll.isChecked())
                                 {
+                                    //dismiss the current dialog
                                      dialog.dismiss();
 
                                     AlertDialog.Builder mBuilder3 = new AlertDialog.Builder(getActivity());
+                                    //inflate the new dialog
                                     final View mView3 = getLayoutInflater().inflate(R.layout.dialog_list_file, null);
                                     RadioGroup mRgroup3 = mView3.findViewById(R.id.rgroup5);
                                     final RadioButton mXml = mView3.findViewById(R.id.rbXml);
@@ -101,14 +111,19 @@ public class ListFragment extends Fragment {
 
                                     mBuilder3.setView(mView3);
                                     final AlertDialog dialog = mBuilder3.create();
+                                    //show the new dialog
                                     dialog.show();
 
+                                    //if the ok button is pressed on the third dialog
                                     mOk3.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
+                                            //if a button is not checked
                                             if(mXml.isChecked() || mJson.isChecked())
                                             {
+                                                //display a toast message
                                                 Toast.makeText(getActivity(),"File generated.",Toast.LENGTH_SHORT).show();
+                                                //dismiss the dialog
                                                 dialog.dismiss();
                                             }
                                         }
@@ -117,15 +132,19 @@ public class ListFragment extends Fragment {
                                 }
 
                                 else {
+                                    //display a toast message if an option is not selected on the third dialog
                                     Toast.makeText(getActivity(),"Select an option.",Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
 
+                        //if the cancel button is clicked on the second dialog
                         mCancel2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
+                                //display a toast message
                                 Toast.makeText(getActivity(),"List cancelled.",Toast.LENGTH_SHORT).show();
+                                //dismiss the dialog
                                 dialog.dismiss();
                             }
                         });
@@ -133,16 +152,20 @@ public class ListFragment extends Fragment {
                     }
 
                     else {
+                        //display a toast message if an option is not selected
                         Toast.makeText(getActivity(),"Select an option.",Toast.LENGTH_SHORT).show();
                     }
 
                 }
             });
 
+            //when the cancel button is clicked
             mCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    //display a toast message
                     Toast.makeText(getActivity(),"List cancelled.",Toast.LENGTH_SHORT).show();
+                    //dismiss the dialog
                     dialog.dismiss();
                 }
             });

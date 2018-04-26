@@ -19,6 +19,7 @@ public class NonAttendeeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    //values for the custom listview
     ListView list;
     String[] studentName={"Damian Lillard", "Karl Anthony Towns", "Kawhi Leonard", "Hassan Whiteside", "Russell Westbrook", "Kevin Love", "Frank Ocean", "Lebron James", "Jermaine Cole"};
     String[] jNumber={"J00000004", "J00000005", "J00222222", "J00232323", "J00023023", "J00000001", "J00372656", "J00623623", "J00201400"};
@@ -35,6 +36,7 @@ public class NonAttendeeFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        //gets the custom listview from the CustomListView class
         list = (ListView) view.findViewById(R.id.listView4);
         CustomListView customListView = new CustomListView(getActivity(),studentName,jNumber,imgId);
         list.setAdapter(customListView);

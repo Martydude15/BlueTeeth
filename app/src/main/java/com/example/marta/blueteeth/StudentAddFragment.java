@@ -69,12 +69,13 @@ public class StudentAddFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        //if the add button is clicked
         view.findViewById(R.id.addBtn2).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 AlertDialog.Builder mBuilder4 = new AlertDialog.Builder(getActivity());
+                //inflates the layout
                 final View mView4 = getLayoutInflater().inflate(R.layout.dialog_student_or_professor, null);
                 RadioGroup  mRgroup = mView4.findViewById(R.id.rgroup2);
                 final RadioButton mStudent = mView4.findViewById(R.id.rbStudent);
@@ -85,11 +86,11 @@ public class StudentAddFragment extends Fragment {
                 mBuilder4.setCancelable(false);
 
 
-                //Show the dialog box
                 mBuilder4.setView(mView4);
                 final AlertDialog dialog = mBuilder4.create();
+                //show the dialog
                 dialog.show();
-                //If a text field is empty, show an error message, else send the message and close the dialog box
+                //if the ok button is clicked
                 mOk.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -98,9 +99,11 @@ public class StudentAddFragment extends Fragment {
                         if(mStudent.isChecked())
 
                         {
+                            //closes the current dialog
                                 dialog.dismiss();
 
                                 AlertDialog.Builder mBuilder5 = new AlertDialog.Builder(getActivity());
+                                //inflate the second dialog
                                 View mView5 = getLayoutInflater().inflate(R.layout.dialog_student_add, null);
                                 final EditText mFname = mView5.findViewById(R.id.editFname);
                                 final EditText mMname = mView5.findViewById(R.id.editMname);
@@ -112,24 +115,26 @@ public class StudentAddFragment extends Fragment {
                                 mBuilder5.setCancelable(false);
 
 
-                                //Show the dialog box
                                 mBuilder5.setView(mView5);
                                 final AlertDialog dialog = mBuilder5.create();
+                                //Show the second dialog box
                                 dialog.show();
-                                //If a text field is empty, show an error message, else send the message and close the dialog box
+                                //if the add button is clicked
                                 mAdd.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        //if a text field is not empty
                                         if(!mFname.getText().toString().isEmpty() && !mMname.getText().toString().isEmpty()
                                                 && !mLname.getText().toString().isEmpty() && !mJnumber.getText().toString().isEmpty())
                                         {
 
+                                            //collects the data from the text fields
                                             String fName = mFname.getText().toString();
                                             String mName = mMname.getText().toString();
                                             String lName = mLname.getText().toString();
                                             String jNumber = mJnumber.getText().toString();
 
-
+                                            //writes to the JSON
                                             try {
                                                 JSONDriver jsonDriver = new JSONDriver("login.json", getContext());
                                                 jsonDriver.addOneStudent(new Student(fName, mName, lName, jNumber));
@@ -140,37 +145,41 @@ public class StudentAddFragment extends Fragment {
                                                 e.printStackTrace();
                                             }
 
-
-
-
-
+                                            //creates a message
                                             Toast.makeText(getActivity(), "Add complete.", Toast.LENGTH_SHORT).show();
+                                            //closes the second dialog
                                             dialog.dismiss();
-                                        }else{
+                                        }
+                                        else{
+                                            //creates a message
                                             Toast.makeText(getActivity(), "Fill all of the text fields.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
 
-                                //Cancel button closes dialog box on press
+                                //if the cancel button is clicked
                                 mCancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        //creates a message
                                         Toast.makeText(getActivity(), "Add cancelled.", Toast.LENGTH_SHORT).show();
+                                        //closes the second dialog
                                         dialog.dismiss();
                                     }
                                 });
 
                         }
 
-                        //If the Professor radio button is clicked
+                        //If the Professor radio button is checked
                         else if (mProfessor.isChecked())
 
                         {
 
+                            //closes the current dialog
                                 dialog.dismiss();
 
                                 AlertDialog.Builder mBuilder6 = new AlertDialog.Builder(getActivity());
+                                //inflate the second layout
                                 View mView6 = getLayoutInflater().inflate(R.layout.dialog_professor_add, null);
                                 final EditText mFname2 = mView6.findViewById(R.id.editFname2);
                                 final EditText mMname2 = mView6.findViewById(R.id.editMname2);
@@ -186,21 +195,25 @@ public class StudentAddFragment extends Fragment {
                                 //Show the dialog box
                                 mBuilder6.setView(mView6);
                                 final AlertDialog dialog = mBuilder6.create();
+                                //show the second dialog
                                 dialog.show();
-                                //If a text field is empty, show an error message, else send the message and close the dialog box
+                                //if the add button is pressed
                                 mAdd.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        //if a text field is not empty
                                         if(!mFname2.getText().toString().isEmpty() && !mMname2.getText().toString().isEmpty() && !mLname2.getText().toString().isEmpty()
                                                 && !mJnumber2.getText().toString().isEmpty() && !mPassword.getText().toString().isEmpty())
                                         {
 
+                                            //collects the text from the text fields
                                             String fName2 = mFname2.getText().toString();
                                             String mName2 = mMname2.getText().toString();
                                             String lName2 = mLname2.getText().toString();
                                             String jNumber2 = mJnumber2.getText().toString();
                                             String password = mPassword.getText().toString();
 
+                                            //writes to the JSON
                                             try {
                                                 JSONDriver jsonDriver = new JSONDriver("login.json", getContext());
                                                 jsonDriver.addOneTeacher(new Teacher(fName2, mName2, lName2, jNumber2, password));
@@ -209,21 +222,26 @@ public class StudentAddFragment extends Fragment {
                                                 e.printStackTrace();
                                             }
 
+                                            //creates a message
                                             Toast.makeText(getActivity(), "Add complete.", Toast.LENGTH_SHORT).show();
+                                            //closes the second dialog
                                             dialog.dismiss();
                                         }
 
                                         else{
+                                            //creates a message if a text field is empty
                                             Toast.makeText(getActivity(), "Fill all of the text fields.", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 });
 
-                                //Cancel button closes dialog box on press
+                                //if the second cancel button is clicked
                                 mCancel.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View view) {
+                                        //creates a message
                                         Toast.makeText(getActivity(), "Add cancelled.", Toast.LENGTH_SHORT).show();
+                                        //closes the second dialog
                                         dialog.dismiss();
                                     }
                                 });
@@ -231,16 +249,19 @@ public class StudentAddFragment extends Fragment {
                         }
 
                         else{
+                            //creates a message if an option is not selected
                             Toast.makeText(getActivity(), "Select an option", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
 
-                //Cancel button closes dialog box on press
+                //if the cancel button is clicked
                 mCancel.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        //creates a message
                         Toast.makeText(getActivity(), "Add cancelled.", Toast.LENGTH_SHORT).show();
+                        //closes the dialog
                         dialog.dismiss();
                     }
                 });

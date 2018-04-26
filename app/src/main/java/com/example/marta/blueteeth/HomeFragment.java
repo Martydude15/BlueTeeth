@@ -29,6 +29,7 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    //values for the custom listview with images
     ListView list;
     String[] studentName={"Kobe Bryant", "Michael Jordan", "Lebron James", "Anthony Davis", "Chris Paul", "Shaquille O'Neal"};
     String[] jNumber={"J00240824", "J00234523", "J00623623", "J00232323", "J00333333", "J00343334"};
@@ -53,14 +54,16 @@ public class HomeFragment extends Fragment {
 
 
 
-        //Bluetooth button function
+        //when the bluetooth button is clicked
         view.findViewById(R.id.btButton2).setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
+                //inflates the dialog
                 View mView = getLayoutInflater().inflate(R.layout.dialog_attendee_list_view, null);
                 list = (ListView) mView.findViewById(R.id.listView2);
+                    //CustomListView class
                     CustomListView customListView = new CustomListView(getActivity(),studentName,jNumber,imgId);
                     list.setAdapter(customListView);
                 Button mClose = mView.findViewById(R.id.closeBtn);
@@ -70,11 +73,14 @@ public class HomeFragment extends Fragment {
                 //Show the dialog box
                 mBuilder.setView(mView);
                 final AlertDialog dialog = mBuilder.create();
+                //shows the dialog
                 dialog.show();
 
+                //when the close button is clicked
                 mClose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        //dismisses the dialog
                        dialog.dismiss();
                     }
                 });

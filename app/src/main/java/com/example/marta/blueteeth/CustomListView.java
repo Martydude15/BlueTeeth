@@ -21,6 +21,7 @@ public class CustomListView extends ArrayAdapter<String>{
     private Integer[] imgId;
     private Activity context;
 
+
     public CustomListView(Activity context, String[] studentName, String[] jNumber, Integer[] imgId) {
         super(context, R.layout.listview_layout, studentName);
 
@@ -40,6 +41,7 @@ public class CustomListView extends ArrayAdapter<String>{
         if (r==null)
         {
             LayoutInflater layoutInflater = context.getLayoutInflater();
+            //inflates the layout
             r=layoutInflater.inflate(R.layout.listview_layout,null,true);
             viewHolder=new ViewHolder(r);
             r.setTag(viewHolder);
@@ -48,8 +50,9 @@ public class CustomListView extends ArrayAdapter<String>{
             viewHolder= (ViewHolder) r.getTag();
 
         }
-        viewHolder.imgv.setImageResource(imgId[position]);
 
+        //sets these values in the order they are typed
+        viewHolder.imgv.setImageResource(imgId[position]);
         viewHolder.txtv1.setText(studentName[position]);
         viewHolder.txtv2.setText(jNumber[position]);
 
@@ -57,6 +60,7 @@ public class CustomListView extends ArrayAdapter<String>{
 
     }
 
+    //class to get the views from the listview_layout xml
     class ViewHolder
     {
         TextView txtv1;
