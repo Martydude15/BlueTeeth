@@ -23,9 +23,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="BlueTeeth Version 1.0"
+        android:text="Team BlueTeeth - Spring 2018"
         android:textColor="@color/southRed"
         android:textSize="11sp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/southRed"
+        android:textSize="11sp"
+        android:text="Version 1.0" />
 
     <TextView
         android:id="@+id/textView6"
@@ -36,7 +45,17 @@
         android:textColor="@color/southBlue"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:text="Randy, Dontarrio, Blake, Martavious" />
+        android:text="Randy Smith, Dontarrio Melton" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/southBlue"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:text="Blake John, Martavious Hails" />
 
     <TextView
         android:id="@+id/textView9"
