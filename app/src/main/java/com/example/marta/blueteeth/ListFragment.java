@@ -126,6 +126,10 @@ public class ListFragment extends Fragment {
                                                 //dismiss the dialog
                                                 dialog.dismiss();
                                             }
+                                            else{
+                                                //display a toast message if an option is not selected on the third dialog
+                                                Toast.makeText(getActivity(),"Select an option.",Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     });
 
