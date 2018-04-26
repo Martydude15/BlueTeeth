@@ -29,6 +29,10 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
+    ListView list;
+    String[] studentName={"Kobe Bryant", "Michael Jordan", "Lebron James", "Anthony Davis", "Chris Paul", "Shaquille O'Neal"};
+    String[] jNumber={"J00240824", "J00234523", "J00623623", "J00232323", "J00333333", "J00343334"};
+    Integer[] imgId={R.drawable.kobe, R.drawable.mj, R.drawable.lebron, R.drawable.ad, R.drawable.cp3, R.drawable.shaq};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,6 +51,8 @@ public class HomeFragment extends Fragment {
         TextView textViewDate = view.findViewById(R.id.text_view_date);
         textViewDate.setText(currentDate);
 
+
+
         //Bluetooth button function
         view.findViewById(R.id.btButton2).setOnClickListener(new View.OnClickListener() {
 
@@ -54,7 +60,9 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(getActivity());
                 View mView = getLayoutInflater().inflate(R.layout.dialog_attendee_list_view, null);
-                ListView mListView = mView.findViewById(R.id.listView2);
+                list = (ListView) mView.findViewById(R.id.listView2);
+                    CustomListView customListView = new CustomListView(getActivity(),studentName,jNumber,imgId);
+                    list.setAdapter(customListView);
                 Button mClose = mView.findViewById(R.id.closeBtn);
                 //Makes it to where a button has to be pressed to close the dialog box
                 mBuilder.setCancelable(false);

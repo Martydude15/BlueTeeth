@@ -8,9 +8,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Location Fragment"
+        android:text="Location"
         android:textSize="30sp"
         android:textStyle="bold"
+        android:textColor="@color/southBlue"
         android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="When life gives you lemons... you don't track location"
+        android:textColor="@color/southRed"
+        android:textStyle="italic" />
+
 
 </FrameLayout>
